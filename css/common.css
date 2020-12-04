@@ -34,8 +34,8 @@ body {
   line-height: 1.6;
   letter-spacing: -1px;
   width: 100%;
-  /* -webkit-tap-highlight-color: rgba(0,0,0,0); */
-  /* 위에꺼 뭔지 찾아봐야함 사이트에 있길래 걍 붙여봄 */
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  /* 탭됐을때 하이라이트 색 바꾸는 웹킷. 랜딩에서 텍스트 긁어보시면 골드로 바뀌는데 그거때문에 넣은듯. */
 }
 
 .body_font_medium {
