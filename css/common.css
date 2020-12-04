@@ -23,7 +23,7 @@ img{vertical-align: top;}
 
 body {
   font: 14px/1.6 'Noto Sans KR', serif;
-  letter-spacing: -0.5px;
+  letter-spacing: -1px;
   width: 100%;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   /* 탭됐을때 하이라이트 색 바꾸는 웹킷. 랜딩에서 텍스트 긁어보시면 골드로 바뀌는데 그거때문에 넣은듯. */
