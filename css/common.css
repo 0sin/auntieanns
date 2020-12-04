@@ -1,0 +1,74 @@
+/* RESET CSS */
+/* 교체하셔도 됩니다 */
+
+* {margin: 0; padding: 0; box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+ul, li {list-style: none;}
+
+a {text-decoration: none;}
+
+div, header, nav, main, footer, section, article, ul, li {margin: 0; padding: 0; box-sizing: border-box;} 
+
+
+
+/* FONT*/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/* font-family: 'Noto Sans KR', serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+/* font-family: 'Cormorant Garamond', sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&display=swap');
+/* font-family: 'Barlow Semi Condensed', serif; */
+
+
+
+/* 공통 */
+
+body {
+  font-family: 'Noto Sans KR', serif;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: -1px;
+  width: 100%;
+  /* -webkit-tap-highlight-color: rgba(0,0,0,0); */
+  /* 위에꺼 뭔지 찾아봐야함 사이트에 있길래 걍 붙여봄 */
+}
+
+.body_font_medium {
+  font-family:'Body-Font-Medium';
+  /* font-stretch: expanded; */
+  font-size: 11px;
+  line-height: 1.27em;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+h2{
+  font-family: 'Title-Font';
+  font-size: 44px;
+  line-height: 52.8px;
+  font-weight: 400;
+  }
+
+h4{
+  font-family:'Body-Font-Medium';
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+
+/* ROOT */
+
+:root {
+  --core-blue: #005ad5;
+  --core-gold: #ffb500;
+  --text-white: #ffffff;
+  --text-black: #1C1C1C;
+  --text-gray: #777777;
+}
