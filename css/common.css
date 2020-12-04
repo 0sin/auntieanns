@@ -1,50 +1,33 @@
-/* RESET CSS */
+/* COMMON CSS */
 /* 교체하셔도 됩니다 */
+
+/* FONT*/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&display=swap');
+
 
 * {margin: 0; padding: 0; box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
-
 ul, li {list-style: none;}
-
-a {text-decoration: none;}
-
+a {text-decoration: none; color: inherit;}
+/* a태그 컬러는 inherit속성으로 변경 */
 div, header, nav, main, footer, section, article, ul, li {margin: 0; padding: 0; box-sizing: border-box;} 
-
-
-
-/* FONT*/
-/* 왜 안될깝쇼... */
-/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap'); */
-/* font-family: 'Noto Sans KR', serif; */
-
-/* @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap'); */
-/* font-family: 'Cormorant Garamond', sans-serif; */
-
-/* @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&display=swap'); */
-/* font-family: 'Barlow Semi Condensed', serif; */
-
-
+h1, h2, h3, h4, h5, h6{font-size: 100%; font-weight: normal;}
+/* 헤딩태그 속성값 초기화 */
+img{vertical-align: top;}
 
 /* 공통 */
 
 body {
-  font-family: 'Noto Sans KR', serif;
-  font-size: 14px;
-  line-height: 1.6;
-  letter-spacing: -1px;
+  font: 14px/1.6 'Noto Sans KR', serif;
+  letter-spacing: -0.5px;
   width: 100%;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   /* 탭됐을때 하이라이트 색 바꾸는 웹킷. 랜딩에서 텍스트 긁어보시면 골드로 바뀌는데 그거때문에 넣은듯. */
 }
-
-a {color: var(--text-white);}
-
-
-.garamond_font {font-family: 'Cormorant Garamond', sans-serif; letter-spacing: normal;}
-.barlow_font {font-family: 'Barlow Semi Condensed', serif; letter-spacing: normal;}
-
-
 
 /* ROOT */
 
@@ -54,4 +37,11 @@ a {color: var(--text-white);}
   --text-white: #ffffff;
   --text-black: #1C1C1C;
   --text-gray: #777777;
+  --font-notoSans: 'Noto Sans KR', serif;
+  --font-garamond: 'Cormorant Garamond', sans-serif;
+  --font-barlow: 'Barlow Semi Condensed', serif;
 }
+
+
+::selection{ background: var(--core-gold); color:var(--text-white);}
+/* 드래그시 셀렉트부분 하이라이트 배경색, 글자색 변경하는 가상선택자 */
