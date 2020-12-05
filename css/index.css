@@ -1,3 +1,9 @@
+/* 스크롤 막대 숨김... 별...ㅎ */
+body::-webkit-scrollbar {display: none;}
+button {border: none; background-color: transparent; cursor: pointer;}
+button:focus {outline: none; border: none;}
+
+
 /* SECTION 01 */
 /* SLIDE */
 
@@ -25,10 +31,18 @@
   position: absolute; top: 0; left: 0;
   background: no-repeat center center;
   background-size: cover;
-  background-image: url(../img/landing_slide_img_1.jpg);
-  z-index: 1;
+  /* background-image: url(../img/landing_slide_img_1.jpg); */
 }
 
+@keyframes bottomToTop {
+  0% {top: +100%;}
+  100% {top: 0;}
+}
+
+@keyframes topToBottom {
+  0% {top: 0}
+  100% {top: +100%}
+}
 
 
 /* CENTER MENU PNG IMG */
@@ -36,7 +50,18 @@
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   /* overflow: hidden; */
-  z-index: 10; opacity: 1;
+  z-index: 10;opacity: 0;
+  transition: opacity 0.3s;
+}
+.center_menu_item img {
+  width: 100%;
+  animation: menuRotate 3s ease infinite;
+}
+
+@keyframes menuRotate {
+  0% {transform: rotate(2deg)}
+  50% {transform: rotate(-2deg)}
+  100% {transform: rotate(2deg)}
 }
 
 
@@ -60,27 +85,118 @@
   transform: translate(0, -50%);
   padding: 0 150px 0 220px;
   color: var(--text-white);
+  word-break: keep-all;
+}
+
+.right_text_item span {
+  display: inline-block;
+  transform: translate3d(0px, -100%, 0px);
+  transition: all 0.5s;
+}
+.right_text_item.active span {
+  display: inline-block;
+  transform: translate3d(0px, 0px, 0px);
 }
 
 
 /* SLIDE TEXT */
-.slide_text_logo {font-size: 28px; font-weight: 700;}
+.slide_text_logo {
+  font-family: var(--font-garamond);
+  font-size: 28px; font-weight: bold;
+  letter-spacing: normal;
+  overflow: hidden;
+}
 
-.slide_text_title_line {
+.slide_text_title_line_eng {
+  font-family: var(--font-garamond);
   font-size: 84px; font-weight: bold;
   color: var(--core-gold);
-  line-height: 1.25;
+  line-height: 1.25; letter-spacing: normal;
+  overflow: hidden;
+}
+
+.slide_text_title_line_kor {
+  font-family: var(--font-notoSans);
+  font-size: 67px; font-weight: bold;
+  color: var(--core-gold);
+  line-height: 1.25; overflow: hidden;
 }
 
 .slide_text_desc {
   font-size: 18px; font-weight: 500;
   color: var(--core-gold);
-  margin: 20px 0 50px;
+  margin: 20px 0 50px; overflow: hidden;
 }
 
-.discover_more_text {font-size: 17px; font-weight: 700;}
+.discover_more_text {
+  font-family: var(--font-barlow);
+  font-size: 17px; letter-spacing: 0;
+  font-weight: 700; overflow: hidden;
+}
 
-.font_size_67 {font-size: 67px;}
+
+/* PREV NEXT BUTTON */
+.prev_next_button_wrap {
+  width: 100%; height: 78px;
+  position: absolute; bottom: 0; left: 0;
+  /* transform: translate(-50%, 0); */
+  z-index: 100;
+  text-align: center;
+  display: inline-flex;
+}
+
+.slide_button {
+  width: 166px; height: 78px;
+  position: absolute; bottom: 0; 
+  opacity: 0.5; background: no-repeat center center;
+}
+
+.slide_button:hover {opacity: 1;}
+
+.slide_prev {right: 50%;  background-image: url(../img/slide-prev.png);}
+
+.slide_next {left: 50%; background-image: url(../img/slide-next.png);}
+
+.slide_pagination {
+  width: 67px; height: 67px;
+  position: absolute; bottom: 40px; left: 50%;
+  transform: translate(-50%, 0);
+  background: var(--core-blue); color: var(--text-white);
+  font-family: var(--font-barlow);
+  font-size: 28px; line-height: 62px; letter-spacing: 0;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  border-radius: 100%; font-weight: 500;
+  z-index: 101;   
+}
+
+
+/* MEDIA */
+@media screen and (max-width: 1860px) {
+
+  .center_menu_item {width: 300px;}
+  
+  .right_text_item {padding: 0 100px 0 150px;}
+  .slide_text_title_line_eng {font-size: 70px;}
+  .slide_text_title_line_kor {font-size: 56px;}
+}
+
+
+@media screen and (max-width: 1280px) {
+  
+  .slide_text_logo {font-size: 18px;}
+  .slide_text_title_line_eng {font-size: 56px;}
+  .slide_text_title_line_kor {font-size: 42px;}
+  .slide_text_desc {font-size: 14px; margin: 20px 0 50px;}
+}
+
+
+@media screen and (max-width: 1023px) {
+
+  .center_menu_item {width: 200px;}
+
+  .right_text_item {padding: 0 0 0 120px;}
+}
+
 
 
 
