@@ -1,23 +1,13 @@
 /* COMMON CSS */
-/* 교체하셔도 됩니다 */
 
-/* FONT*/
-
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap'); 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap'); 
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&display=swap');
-
-
-* {margin: 0; padding: 0; box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-}
+* {margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased;}
 ul, li {list-style: none;}
 a {text-decoration: none; color: inherit;}
-/* a태그 컬러는 inherit속성으로 변경 */
 div, header, nav, main, footer, section, article, ul, li {margin: 0; padding: 0; box-sizing: border-box;} 
 h1, h2, h3, h4, h5, h6{font-size: 100%; font-weight: normal;}
-/* 헤딩태그 속성값 초기화 */
 img{vertical-align: top;}
+
+
 
 /* 공통 */
 
@@ -26,8 +16,8 @@ body {
   letter-spacing: -1px;
   width: 100%;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
-  /* 탭됐을때 하이라이트 색 바꾸는 웹킷. 랜딩에서 텍스트 긁어보시면 골드로 바뀌는데 그거때문에 넣은듯. */
 }
+
 
 /* ROOT */
 
