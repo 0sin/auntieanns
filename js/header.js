@@ -1,8 +1,10 @@
 // 전역 변수 선언. 태그 또는 클래스명과 동일하게 지정함
-const header = document.querySelector('header')
 const gnbItem = document.querySelectorAll('.gnb-item')
 const hamburgerWrap = document.querySelector('.hamburger-wrap');
 const gnbSubmenuItem = document.querySelectorAll('.gnb-submenu-item')
+const wholeMenuBox = document.querySelectorAll('.whole-menu-box')
+const wholeMenuTitle = document.querySelectorAll('.whole-menu-title')
+const wholeMenuItem = document.querySelectorAll('.whole-menu-item')
 
 /* gnb 메뉴명 마우스 오버시 색상변경 & 밑줄생성 & 서브메뉴
 서브메뉴 나타나는 함수는 첫번째 메뉴인 앤티앤스에 서브메뉴가 없어서 별도의 for문으로 작성 */
@@ -32,6 +34,18 @@ gnbSubmenuItem.forEach(el => el.addEventListener('mouseover', function(){
 gnbSubmenuItem.forEach(el => el.addEventListener('mouseleave', function(){
   el.style = ''
 }))
+
+if(window.innerWidth > 989){
+  wholeMenuBox.forEach(el => el.addEventListener('mouseover', function(){
+    el.classList.add('on')
+  }))
+  wholeMenuBox.forEach(el => el.addEventListener('mouseleave', function(){
+    el.classList.remove('on')
+  }))  
+  wholeMenuItem.forEach(el => el.addEventListener('mouseover', () => {el.classList.add('on')}))
+  wholeMenuItem.forEach(el => el.addEventListener('mouseleave', () => {el.classList.remove('on')}))
+}
+
 
 
 // 햄버거 메뉴 관련 액션 총괄 함수
