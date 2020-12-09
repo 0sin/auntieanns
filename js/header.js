@@ -4,16 +4,18 @@ const gnbItem = document.querySelectorAll('.gnb-item')
 const hamburgerWrap = document.querySelector('.hamburger-wrap');
 const gnbSubmenuItem = document.querySelectorAll('.gnb-submenu-item')
 
-/* gnb 메뉴명 마우스 오버시 색상변경 & 밑줄생성 & 서브메뉴 나타남
-첫번째 메뉴인 앤티앤스에 자식노드가 없어서 for문으로 작성 */
+/* gnb 메뉴명 마우스 오버시 색상변경 & 밑줄생성 & 서브메뉴
+서브메뉴 나타나는 함수는 첫번째 메뉴인 앤티앤스에 서브메뉴가 없어서 별도의 for문으로 작성 */
 gnbItem.forEach(el => el.addEventListener('mouseover', function(){
   el.style.color = 'var(--core-gold)'
   el.children[1].style.width = '100%' 
 }))
+
 gnbItem.forEach(el => el.addEventListener('mouseleave', function(){
   el.style.color = '' 
   el.children[1].style.width = '0' 
 }))
+
 for(let i = 1; i < gnbItem.length; i++){
   gnbItem[i].addEventListener('mouseover', function(){
     this.children[2].classList.add('on')

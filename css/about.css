@@ -1,4 +1,5 @@
 @charset "UTF-8";
+html, body{scroll-behavior: smooth;}
 
 .skip-menu a{ position: fixed; left: 0; top: -9999px; width: 100%; z-index: 999; text-align: center; padding: 8px; background-color: var(--core-gold); color: var(--text-white); }
 .skip-menu a:focus {top: 0;}
@@ -37,7 +38,7 @@ header.none-bg .gnb-wrap{color: var(--text-white);}
 .hamburger-wrap.on .ham-line02-b{transform: rotate(-45deg);}
 .hamburger-wrap.on .ham-line03{bottom: -26px;}
 
-.whole-menu-container{position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9990; display: none;}
+.whole-menu-container{position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9998; display: none; transition: all .5s;}
 .whole-menu-box-wrap{display: flex; flex-wrap: wrap; width: 77%; height: 100%;}
 .whole-menu-box-wrap .whole-menu-box{width: 33.3333%; height: 50%; padding-top: 5.7%; padding-left: 5.5%; background-color: #004bba; color: var(--text-white);}
 .whole-menu-box:nth-child(1),
@@ -48,9 +49,21 @@ header.none-bg .gnb-wrap{color: var(--text-white);}
 .whole-menu-box:nth-child(3),
 .whole-menu-box:nth-child(6){border-left: 1px solid rgba(255,255,255,0.1);}
 .whole-menu-box .whole-menu-title{font-size: 50px; font-family: var(--font-garamond); font-weight: normal;}
-.whole-menu-box .whole-menu-list{
-  font-size: 20px;
-}
+.whole-menu-title .title-hover-line{width: 100%; height: 2px; background-color: #fff;}
+.whole-menu-box .whole-menu-list{font-size: 20px;}
+.whole-menu-list .whole-menu-item{margin: 5px 0;}
+.whole-menu-box .whole-menu-list .auntieannes-menu{display: flex;}
+.whole-menu-rightside{position: absolute; top: 0; right:0; bottom: 0; width: 23%; height: 100%; background: url(../img/whole_menu_rigth_side_bg.jpg)no-repeat -60px 0/cover; color: var(--text-white); letter-spacing: -0.5px; }
+.whole-menu-rightside .rightside-info-wrap{position: absolute; left: 50px; bottom: 40px;}
+.rightside-info-wrap .right-side-title{margin-bottom: 27px;font-size: 27px; font-family: var(--font-garamond); font-weight: 300;}
+.rightside-info-wrap .right-side-title::after{content: ''; display: block; width: 40px; height: 1px; background-color: #fff;}
+.rightside-info-wrap .right-side-txt{margin-bottom: 30px; font-weight: 300;}
+.right-side-txt.address-txt{font-size: 16px; }
+.right-side-txt.contact-txt{line-height:1.5; font-size: 18px; font-family: var(--font-barlow);}
+.rightside-info-wrap .sns-icon-wrap{display: flex; justify-content: space-between; width: 140px;}
+
+.whole-menu-container.on{display: block;}
+
 @media (max-width: 1860px){
   .hamburger-wrap{right: 30px;} 
 }
@@ -66,12 +79,47 @@ header.none-bg .gnb-wrap{color: var(--text-white);}
   .hamburger-wrap{width: 54px; height: 54px;}
   .hamburger-wrap .ham-line-wrap{width: 17px; height: 16px; margin: 18px 0 0 18px;}
 }
+/*z-index값 : header 999, hamburger 9999(항상 최상위) whole-menu 9998(햄버거 토글로 열리는 전체메뉴)*/
+@keyframes fadeIn{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+@keyframes fadeOut{
+  0%{opacity: 1;}
+  100%{opacity: 0;}
+}
 
-.whole-menu-rightside{position: absolute; top: 0; right:0; bottom: 0; width: 23%; height: 100%; background: url(../img/whole_menu_rigth_side_bg.jpg)no-repeat 0 0/cover; color: var(--text-white); letter-spacing: -0.5px; line-height: 1.8;}
-.whole-menu-rightside .rightside-info-wrap{position: absolute; bottom:30px;}
-.rightside-info-wrap .right-side-title{font-size: 27px; font-family: var(--font-garamond); font-weight: 300;}
-.rightside-info-wrap .right-side-txt{font-size: 16px; font-weight: 300;}
-.whole-menu-container.on{display: block;}
-
+.shortcut-top-btn{z-index: 999; position: fixed; right: 50px; bottom: 50px; visibility: hidden; display: block; opacity: 0; width: 80px; height: 80px; transform: scale(0.9); border-radius: 50%; text-align: center; font-size: 16px; font-weight: bold; font-family: var(--font-barlow); letter-spacing: 1px; background-color: #fff; color: var(--core-gold); box-shadow: 3px 3px 18px 15px rgba(0,0,0,0.05); transition: all .3s;}
+.shortcut-top-btn .chevron-up{width: 14px; height: 14px; 
+  border-top: 2px solid var(--core-gold);
+  border-left: 2px solid var(--core-gold);
+  transform: rotate(45deg);
+  margin: 24px auto 1px;
+}
+.shortcut-top-btn.show{visibility: visible; opacity: 1; transform: scale(1);}
 /* 섹션 영역 시작 */
-#about-main{width: 100%; height: 8180px; background-color: var(--core-blue);}
+#about-wrap{padding-top: 120px;}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+#about-visual{position: relative; width: 100%; height: 818px; background-color: var(--core-blue); overflow: hidden; color: var(--text-white);}
+#about-visual .bg-rotate-txt{position: absolute; top: -220px; right: -100px; width: 383px; height: 383px; background: url(../img/rotate_txt_383x383.png) no-repeat center center/cover; animation: rotate 15s linear infinite;}
+
+#about-visual .about-shortcut-menu-wrap{position: absolute; top: 78px; left: 50%; transform: translateX(-50%); width: 368px; height: 140px; text-align: center;}
+.about-shortcut-menu-wrap .about-shortcut-menu-title{margin-bottom: 30px; font-size: 60px; font-weight: bold; font-family: var(--font-garamond); letter-spacing: 0;}
+.about-shortcut-menu-wrap .about-shortcut-menu {display: flex; justify-content: space-between; font-size: 20px; font-weight: 300;}
+
+#about-visual .about-visual-title-wrap{position: relative; top: 380px; width: 100%; max-width: 1200px; height: 150px; margin: 0 auto; text-align: center;}
+.about-visual-title-wrap .about-visual-subtitle{position: absolute; top:0; left: 50px; display: flex; align-items: center; width: 100%; font-size: 16px; font-family: var(--font-barlow); letter-spacing:;}
+.about-visual-subtitle>span{position: relative; margin: 0 15px 0 18px;}
+.about-visual-subtitle>span::before{position: absolute; top: calc(50% - 2px); left: -10px; content: ''; display: block; width: 4px; height: 4px; border-radius: 100%; background-color: #fff;}
+.about-visual-title-wrap .about-visual-subtitle::after{content: ''; display: block; width: 72%; height: 1px; background-color: #fff;}
+.about-visual-title-wrap .about-visual-title{z-index: 2; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; letter-spacing: 0; font-size: 138px; font-weight: bold; font-family: var(--font-garamond); text-shadow: 7px 5px 13px rgba(0,0,0,0.3);}
+#about-visual .visual_moving_pretzel{position: absolute; top: 90px; left: 50%; transform: translateX(-50%); width: 100%; height: 100%; background: url(../img/about/visual_pretzel_399x431.png)no-repeat center center; transition: top .1s;}
+#auntie-story{padding: 100px 20px; height: 10000px;}
