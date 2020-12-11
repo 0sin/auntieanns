@@ -6,14 +6,15 @@ const wholeMenuBox = document.querySelectorAll('.whole-menu-box')
 const wholeMenuTitle = document.querySelectorAll('.whole-menu-title')
 const wholeMenuItem = document.querySelectorAll('.whole-menu-item')
 
+
 /* gnb 메뉴명 마우스 오버시 색상변경 & 밑줄생성 & 서브메뉴
 서브메뉴 나타나는 함수는 첫번째 메뉴인 앤티앤스에 서브메뉴가 없어서 별도의 for문으로 작성 */
-gnbItem.forEach(el => el.addEventListener('mouseover', function(){
+gnbItem.forEach(el => el.addEventListener('mouseover', () => {
   el.style.color = 'var(--core-gold)'
   el.children[1].style.width = '100%' 
 }))
 
-gnbItem.forEach(el => el.addEventListener('mouseleave', function(){
+gnbItem.forEach(el => el.addEventListener('mouseleave', () => {
   el.style.color = '' 
   el.children[1].style.width = '0' 
 }))
@@ -28,24 +29,54 @@ for(let i = 1; i < gnbItem.length; i++){
 }
 
 // gnb 서브메뉴 마우스 오버시 색상변경
-gnbSubmenuItem.forEach(el => el.addEventListener('mouseover', function(){
+gnbSubmenuItem.forEach(el => el.addEventListener('mouseover', () => {
   el.style = 'background-color: var(--core-gold); color: var(--text-white);'
 }))
-gnbSubmenuItem.forEach(el => el.addEventListener('mouseleave', function(){
+gnbSubmenuItem.forEach(el => el.addEventListener('mouseleave', () => {
   el.style = ''
 }))
 
+
+// 햄버거 클릭시 나타나는 전체메뉴 스타일 관련
 if(window.innerWidth > 989){
-  wholeMenuBox.forEach(el => el.addEventListener('mouseover', function(){
+  changeWholeMenuStyle()
+}else if(window.innerWidth < 990){
+  wholeMenuBox.forEach(el => el.addEventListener('click', toggleAccordion(el)))
+  // wholeMenuBox.forEach(el => el.addEventListener('click', () => {
+  //   if(el.classList.contains('mobile_on')){
+  //     el.classList.remove('mobile_on')
+  //   }else{
+  //     el.classList.remove('mobile_on')
+  //   }
+  // }))
+  // for(let i=0; i<wholeMenuBox.length; i++){
+  //   wholeMenuBox[i].addEventListener('click', function(){
+  //     for(let j = 0; j<wholeMenuBox.length; j++){
+  //       wholeMenuBox[j].classList.remove('mobile_on')
+  //     }
+  //     this.classList.add('mobile_on')
+  //   })
+  // }
+}
+
+function changeWholeMenuStyle(){
+  wholeMenuBox.forEach(el => el.addEventListener('mouseover', () => {
     el.classList.add('on')
   }))
-  wholeMenuBox.forEach(el => el.addEventListener('mouseleave', function(){
+  wholeMenuBox.forEach(el => el.addEventListener('mouseleave', () => {
     el.classList.remove('on')
   }))  
   wholeMenuItem.forEach(el => el.addEventListener('mouseover', () => {el.classList.add('on')}))
   wholeMenuItem.forEach(el => el.addEventListener('mouseleave', () => {el.classList.remove('on')}))
 }
 
+function toggleAccordion(el){
+    if(el.classList.contains('mobile_on')){
+      el.classList.remove('mobile_on')
+    }else{
+      el.classList.remove('mobile_on')
+    }
+}
 
 
 // 햄버거 메뉴 관련 액션 총괄 함수
