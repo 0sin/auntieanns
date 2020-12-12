@@ -41,7 +41,7 @@ gnbSubmenuItem.forEach(el => el.addEventListener('mouseleave', () => {
 if(window.innerWidth > 989){
   changeWholeMenuStyle()
 }else if(window.innerWidth < 990){
-  wholeMenuBox.forEach(el => el.addEventListener('click', toggleAccordion(el)))
+  wholeMenuBox.forEach(el => el.addEventListener('click', toggleAccordion)) 
   // wholeMenuBox.forEach(el => el.addEventListener('click', () => {
   //   if(el.classList.contains('mobile_on')){
   //     el.classList.remove('mobile_on')
@@ -49,14 +49,7 @@ if(window.innerWidth > 989){
   //     el.classList.remove('mobile_on')
   //   }
   // }))
-  // for(let i=0; i<wholeMenuBox.length; i++){
-  //   wholeMenuBox[i].addEventListener('click', function(){
-  //     for(let j = 0; j<wholeMenuBox.length; j++){
-  //       wholeMenuBox[j].classList.remove('mobile_on')
-  //     }
-  //     this.classList.add('mobile_on')
-  //   })
-  // }
+
 }
 
 function changeWholeMenuStyle(){
@@ -70,14 +63,35 @@ function changeWholeMenuStyle(){
   wholeMenuItem.forEach(el => el.addEventListener('mouseleave', () => {el.classList.remove('on')}))
 }
 
-function toggleAccordion(el){
-    if(el.classList.contains('mobile_on')){
-      el.classList.remove('mobile_on')
-    }else{
-      el.classList.remove('mobile_on')
-    }
-}
+// function toggleAccordion(){
+//   for(let i=0; i<wholeMenuBox.length; i++){
+//     wholeMenuBox[i].addEventListener('click', function(){
+//       for(let j = 0; j<wholeMenuBox.length; j++){
+//         wholeMenuBox[j].classList.remove('mobile_on')
+//       }
+//       this.classList.add('mobile_on')
+//     })
+//   }
+// }
 
+wholeMenuBox.forEach(function(el){
+  el.addEventListener('click', toggleAccordion)
+})
+
+function toggleAccordion(el){
+  const targetBox = el.currentTarget
+  const targetNextSibling = targetBox.nextElementSibling
+  const targetPrevSibling = targetBox.previousElementSibling
+    if(targetBox.classList.contains('mobile_on')){
+      targetNextSibling.classList.remove('mobile_on')
+      targetPrevSibling.classList.remove('mobile_on')
+    }else if(targetBox.classList.contains('mobile_on')){
+      targetBox.classList.remove('mobile_on')
+    }else{
+      targetBox.classList.add('mobile_on')
+    }
+
+}
 
 // 햄버거 메뉴 관련 액션 총괄 함수
 function toggleHamburger() {
