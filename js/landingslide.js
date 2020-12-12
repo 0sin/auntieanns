@@ -8,6 +8,8 @@ const buttonNext = document.querySelector('.slide_next');
 let leftImgSlide = document.querySelectorAll('.left_img_item');
 let centerMenuSlide = document.querySelectorAll('.center_menu_item');
 let rightTextSlide = document.querySelectorAll('.right_text_item');
+let discoverMoreBtn = document.querySelectorAll('.slide_btn');
+console.log(discoverMoreBtn[0])
 let slidePagination = document.querySelector('.slide_pagination');
 
 let slideNumber = 0; //0일때 첫페이지
@@ -18,6 +20,8 @@ function fistSlideShow () {
   leftImgSlide[0].style.cssText = "z-index: 5; background-image: url(img/landing_slide_img_1.jpg);";
   centerMenuSlide[0].style.opacity = "1";
   rightTextSlide[0].style.opacity = "1";
+  discoverMoreBtn[0].style.opacity = "1";
+
   rightTextSlide[0].classList.add('active');
 }
 fistSlideShow();
@@ -37,6 +41,7 @@ function nextSlideShow() {
     centerMenuSlide[slideNumber].style.opacity = "0";
 
     // 텍스트 사라짐
+    discoverMoreBtn[slideNumber].style.opacity = "0";
     rightTextSlide[slideNumber].style.opacity = "0";
     rightTextSlide[slideNumber].classList.remove('active');
     
@@ -48,6 +53,7 @@ function nextSlideShow() {
     centerMenuSlide[slideNumber+1].style.opacity = "1";
 
     // 텍스트 위에서 아래로 내려옴
+    discoverMoreBtn[slideNumber+1].style.opacity = "1";
     rightTextSlide[slideNumber+1].style.opacity = "1";
     rightTextSlide[slideNumber+1].classList.add('active');
     for (let x=0; x<rightTextSlide[slideNumber+1].querySelectorAll('span').length; x++) {
@@ -68,6 +74,7 @@ function nextSlideShow() {
     leftImgSlide[slideNumber].style.zIndex = "1";
     leftImgSlide[slideNumber].style.animation = "";
     centerMenuSlide[slideNumber].style.opacity = "0";
+    discoverMoreBtn[slideNumber].style.opacity = "0";
     rightTextSlide[slideNumber].style.opacity = "0";
     rightTextSlide[slideNumber].classList.remove('active');
 
@@ -75,6 +82,7 @@ function nextSlideShow() {
     // 올라가는 페이지
     leftImgSlide[0].style.cssText = "z-index: 5; background-image: url(img/landing_slide_img_1.jpg); animation: bottomToTop 0.5s ease-in forwards;";
     centerMenuSlide[0].style.opacity = "1";
+    discoverMoreBtn[0].style.opacity = "1";
     rightTextSlide[0].style.opacity = "1";
     rightTextSlide[0].classList.add('active');
     for (let x=0; x<rightTextSlide[0].querySelectorAll('span').length; x++) {
@@ -104,6 +112,7 @@ function prevSlideShow() {
     centerMenuSlide[slideNumber].style.opacity = "0";
 
     // 텍스트 사라짐
+    discoverMoreBtn[slideNumber].style.opacity = "0";
     rightTextSlide[slideNumber].style.opacity = "0";
     rightTextSlide[slideNumber].classList.remove('active');
     
@@ -115,6 +124,7 @@ function prevSlideShow() {
     centerMenuSlide[slideNumber-1].style.opacity = "1";
 
     // 텍스트 위에서 아래로 내려옴
+    discoverMoreBtn[slideNumber-1].style.opacity = "1";
     rightTextSlide[slideNumber-1].style.opacity = "1";
     rightTextSlide[slideNumber-1].classList.add('active');
     for (let x=0; x<rightTextSlide[slideNumber-1].querySelectorAll('span').length; x++) {
@@ -136,6 +146,7 @@ function prevSlideShow() {
     leftImgSlide[0].style.zIndex = "1";
     leftImgSlide[0].style.animation = "";
     centerMenuSlide[0].style.opacity = "0";
+    discoverMoreBtn[0].style.opacity = "0";
     rightTextSlide[0].style.opacity = "0";
     rightTextSlide[0].classList.remove('active');
 
@@ -143,6 +154,7 @@ function prevSlideShow() {
     // 올라가는 페이지
     leftImgSlide[leftImgSlide.length-1].style.cssText = "z-index: 5; background-image: url(img/landing_slide_img_" + (leftImgSlide.length) + ".jpg); animation: bottomToTop 0.5s ease-in forwards;";
     centerMenuSlide[leftImgSlide.length-1].style.opacity = "1";
+    discoverMoreBtn[leftImgSlide.length-1].style.opacity = "1";
     rightTextSlide[leftImgSlide.length-1].style.opacity = "1";
     rightTextSlide[leftImgSlide.length-1].classList.add('active');
     for (let x=0; x<rightTextSlide[leftImgSlide.length-1].querySelectorAll('span').length; x++) {
