@@ -5,12 +5,17 @@ function scrollActions(){
 }
 
 function moveDown_BG_Pretzel(y){
-  const visualMovingPretzel = document.querySelector('.visual_moving_pretzel')
-  console.log(y)
+  const visualMovingPretzel = document.querySelector('.visual-moving-pretzle')
+  const StoryMovingPretzel = document.querySelector('.story-moving-pretzle')
   if(y < 191){
     visualMovingPretzel.style = ''
   }else if(y > 190){
     visualMovingPretzel.style = `top: ${y}px;` 
+    StoryMovingPretzel.style = '' 
+ } 
+  if(y > 270){
+    console.log(y)
+    StoryMovingPretzel.style = `top: ${y -566}px;` 
   }
 }
 
