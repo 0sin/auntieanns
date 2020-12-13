@@ -1,1 +1,1 @@
-# 12.12 SAT landing static finish
+# Last Update: 12.14 SUN Progressbar, animation css
