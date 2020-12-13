@@ -1,67 +1,72 @@
 // LANDING SLIDE
-// SECTION 01------------------------------
+// SECTION 01: MAIN SLIDE 
 
 // 변수 선언
-const buttonPrev = document.querySelector('.slide_prev');
-const buttonNext = document.querySelector('.slide_next');
+const mainPrewBtn = document.querySelector('.main_slide_btn.prev');
+const mainNextBtn = document.querySelector('.main_slide_btn.next');
 
-let leftImgSlide = document.querySelectorAll('.left_img_item');
-let centerMenuSlide = document.querySelectorAll('.center_menu_item');
-let rightTextSlide = document.querySelectorAll('.right_text_item');
-let discoverMoreBtn = document.querySelectorAll('.slide_btn');
-console.log(discoverMoreBtn[0])
-let slidePagination = document.querySelector('.slide_pagination');
+const mainImgSlide = document.querySelectorAll('.main_slide_img_item');
+const mainCenterMenuChange = document.querySelectorAll('.main_center_menu_item');
+const mainTextSlide = document.querySelectorAll('.main_slide_text_item');
+const discoverMoreBtn = document.querySelectorAll('.slide_discover_btn');
+const mainSlidePagination = document.querySelector('.main_slide_pagination');
+const mainSlideProgressbar = document.querySelectorAll('.progressbar');
 
 let slideNumber = 0; //0일때 첫페이지
 
 
 // 첫화면 로딩
 function fistSlideShow () {
-  leftImgSlide[0].style.cssText = "z-index: 5; background-image: url(img/landing_slide_img_1.jpg);";
-  centerMenuSlide[0].style.opacity = "1";
-  rightTextSlide[0].style.opacity = "1";
+  mainImgSlide[0].style.zIndex = "5";
+  mainCenterMenuChange[0].style.opacity = "1";
+  mainTextSlide[0].style.opacity = "1";
   discoverMoreBtn[0].style.opacity = "1";
+  mainSlideProgressbar[0].classList.add('active');
 
-  rightTextSlide[0].classList.add('active');
+  mainTextSlide[0].classList.add('active');
 }
 fistSlideShow();
 
 
 // NEXT SLIDE
-buttonNext.addEventListener('click', nextSlideShow);
+mainNextBtn.addEventListener('click', nextSlideShow);
 
 function nextSlideShow() {
-  if(slideNumber != leftImgSlide.length-1) { // 마지막 페이지가 아닐때
+  if(slideNumber != mainImgSlide.length-1) { // 마지막 페이지가 아닐때
     // 현재페이지 그대로 유지
-    leftImgSlide[slideNumber].style.zIndex = "1";
-    leftImgSlide[leftImgSlide.length-1].style.zIndex = "0"; //이미지 1번에서 2번으로 넘어갈때 마지막 슬라이드가 1번보다 z-index 값이 낮아야함
-    leftImgSlide[slideNumber].style.animation = "";
-
+    mainImgSlide[slideNumber].style.zIndex = "1";
+    mainImgSlide[mainImgSlide.length-1].style.zIndex = "0"; //이미지 1번에서 2번으로 넘어갈때 마지막 슬라이드가 1번보다 z-index 값이 낮아야함
+    mainImgSlide[slideNumber].style.animation = "";
+    
     // 메뉴이미지 사라짐
-    centerMenuSlide[slideNumber].style.opacity = "0";
-
+    mainCenterMenuChange[slideNumber].style.opacity = "0";
+    
     // 텍스트 사라짐
     discoverMoreBtn[slideNumber].style.opacity = "0";
-    rightTextSlide[slideNumber].style.opacity = "0";
-    rightTextSlide[slideNumber].classList.remove('active');
+    mainTextSlide[slideNumber].style.opacity = "0";
+    mainTextSlide[slideNumber].classList.remove('active');
+    // 프로그레스바 초기화
+    mainSlideProgressbar[slideNumber].classList.remove('active');
     
     
     // 올라가는 다음페이지
-    leftImgSlide[slideNumber+1].style.cssText = "z-index: 5; background-image: url(img/landing_slide_img_" + (slideNumber+2) + ".jpg); animation: bottomToTop 0.5s ease-in forwards;";
+    mainImgSlide[slideNumber+1].style.zIndex = "5";
+    mainImgSlide[slideNumber+1].style.animation = "bottomToTop 0.5s ease-in forwards";
 
     // 메뉴이미지 생김
-    centerMenuSlide[slideNumber+1].style.opacity = "1";
+    mainCenterMenuChange[slideNumber+1].style.opacity = "1";
 
     // 텍스트 위에서 아래로 내려옴
     discoverMoreBtn[slideNumber+1].style.opacity = "1";
-    rightTextSlide[slideNumber+1].style.opacity = "1";
-    rightTextSlide[slideNumber+1].classList.add('active');
-    for (let x=0; x<rightTextSlide[slideNumber+1].querySelectorAll('span').length; x++) {
-      rightTextSlide[slideNumber+1].querySelectorAll('span')[x].style = "transition-delay: " + (0.2 * x) + "s;";
+    mainTextSlide[slideNumber+1].style.opacity = "1";
+    mainTextSlide[slideNumber+1].classList.add('active');
+    for (let x=0; x<mainTextSlide[slideNumber+1].querySelectorAll('span').length; x++) {
+      mainTextSlide[slideNumber+1].querySelectorAll('span')[x].style = "transition-delay: " + (0.2 * x) + "s;";
     }
 
-    // 페이지 번호 바뀜
-    slidePagination.innerHTML = "0" + (slideNumber+2);
+    // 페이지 번호 바뀜, 프로그레스바
+    mainSlidePagination.innerHTML = "0" + (slideNumber+2);
+    mainSlideProgressbar[slideNumber+1].classList.add('active');
     
     
     slideNumber++;
@@ -71,24 +76,27 @@ function nextSlideShow() {
   
   else { //마지막 슬라이드일 때
     // 현재페이지 그대로 유지
-    leftImgSlide[slideNumber].style.zIndex = "1";
-    leftImgSlide[slideNumber].style.animation = "";
-    centerMenuSlide[slideNumber].style.opacity = "0";
+    mainImgSlide[slideNumber].style.zIndex = "1";
+    mainImgSlide[slideNumber].style.animation = "";
+    mainCenterMenuChange[slideNumber].style.opacity = "0";
     discoverMoreBtn[slideNumber].style.opacity = "0";
-    rightTextSlide[slideNumber].style.opacity = "0";
-    rightTextSlide[slideNumber].classList.remove('active');
+    mainTextSlide[slideNumber].style.opacity = "0";
+    mainTextSlide[slideNumber].classList.remove('active');
+    mainSlideProgressbar[slideNumber].classList.remove('active');
 
 
     // 올라가는 페이지
-    leftImgSlide[0].style.cssText = "z-index: 5; background-image: url(img/landing_slide_img_1.jpg); animation: bottomToTop 0.5s ease-in forwards;";
-    centerMenuSlide[0].style.opacity = "1";
+    mainImgSlide[0].style.zIndex = "5";
+    mainImgSlide[0].style.animation = "bottomToTop 0.5s ease-in forwards";
+    mainCenterMenuChange[0].style.opacity = "1";
     discoverMoreBtn[0].style.opacity = "1";
-    rightTextSlide[0].style.opacity = "1";
-    rightTextSlide[0].classList.add('active');
-    for (let x=0; x<rightTextSlide[0].querySelectorAll('span').length; x++) {
-      rightTextSlide[0].querySelectorAll('span')[x].style = "transition-delay: " + (0.2 * x) + "s;";
+    mainTextSlide[0].style.opacity = "1";
+    mainTextSlide[0].classList.add('active');
+    for (let x=0; x<mainTextSlide[0].querySelectorAll('span').length; x++) {
+      mainTextSlide[0].querySelectorAll('span')[x].style = "transition-delay: " + (0.2 * x) + "s;";
     }
-    slidePagination.innerHTML = "01";
+    mainSlidePagination.innerHTML = "01";
+    mainSlideProgressbar[0].classList.add('active');
 
     
     slideNumber = 0;
@@ -99,40 +107,44 @@ function nextSlideShow() {
 
 
 // PREV SLIDE
-buttonPrev.addEventListener('click', prevSlideShow);
+mainPrewBtn.addEventListener('click', prevSlideShow);
 
 function prevSlideShow() {
   if(slideNumber != 0) { // 첫 페이지가 아닐때
     // 현재페이지 그대로 유지
-    leftImgSlide[slideNumber].style.zIndex = "0";
-    //leftImgSlide[.style.zIndex = "1"; //이미지 2번에서 1번으로 넘어갈때 마지막 슬라이드가 2번보다 z-index 값이 낮아야함
-    leftImgSlide[slideNumber].style.animation = "";
+    mainImgSlide[slideNumber].style.zIndex = "0";
+    //mainImgSlide[.style.zIndex = "1"; //이미지 2번에서 1번으로 넘어갈때 마지막 슬라이드가 2번보다 z-index 값이 낮아야함
+    mainImgSlide[slideNumber].style.animation = "";
 
     // 메뉴이미지 사라짐
-    centerMenuSlide[slideNumber].style.opacity = "0";
+    mainCenterMenuChange[slideNumber].style.opacity = "0";
 
     // 텍스트 사라짐
     discoverMoreBtn[slideNumber].style.opacity = "0";
-    rightTextSlide[slideNumber].style.opacity = "0";
-    rightTextSlide[slideNumber].classList.remove('active');
+    mainTextSlide[slideNumber].style.opacity = "0";
+    mainTextSlide[slideNumber].classList.remove('active');
+    // 프로그레스바
+    mainSlideProgressbar[slideNumber].classList.remove('active');
     
       
     // 내려가는 다음페이지
-    leftImgSlide[slideNumber-1].style.cssText = "z-index: 5; background-image: url(img/landing_slide_img_" + (slideNumber) + ".jpg); animation: bottomToTop 0.5s ease-in forwards;";
+    mainImgSlide[slideNumber-1].style.zIndex = "5";
+    mainImgSlide[slideNumber-1].style.animation = "bottomToTop 0.5s ease-in forwards";
 
     // 메뉴이미지 생김
-    centerMenuSlide[slideNumber-1].style.opacity = "1";
+    mainCenterMenuChange[slideNumber-1].style.opacity = "1";
 
     // 텍스트 위에서 아래로 내려옴
     discoverMoreBtn[slideNumber-1].style.opacity = "1";
-    rightTextSlide[slideNumber-1].style.opacity = "1";
-    rightTextSlide[slideNumber-1].classList.add('active');
-    for (let x=0; x<rightTextSlide[slideNumber-1].querySelectorAll('span').length; x++) {
-      rightTextSlide[slideNumber-1].querySelectorAll('span')[x].style = "transition-delay: " + (0.2 * x) + "s;";
+    mainTextSlide[slideNumber-1].style.opacity = "1";
+    mainTextSlide[slideNumber-1].classList.add('active');
+    for (let x=0; x<mainTextSlide[slideNumber-1].querySelectorAll('span').length; x++) {
+      mainTextSlide[slideNumber-1].querySelectorAll('span')[x].style = "transition-delay: " + (0.2 * x) + "s;";
     }
 
-    // 페이지 번호 바뀜
-    slidePagination.innerHTML = "0" + (slideNumber);
+    // 페이지 번호 바뀜, 프로그레스바
+    mainSlidePagination.innerHTML = "0" + (slideNumber);
+    mainSlideProgressbar[slideNumber].classList.add('active');
     
     
     slideNumber--;
@@ -143,27 +155,30 @@ function prevSlideShow() {
   
   else { //처음 슬라이드일 때
     // 현재페이지 그대로 유지
-    leftImgSlide[0].style.zIndex = "1";
-    leftImgSlide[0].style.animation = "";
-    centerMenuSlide[0].style.opacity = "0";
+    mainImgSlide[0].style.zIndex = "1";
+    mainImgSlide[0].style.animation = "";
+    mainCenterMenuChange[0].style.opacity = "0";
     discoverMoreBtn[0].style.opacity = "0";
-    rightTextSlide[0].style.opacity = "0";
-    rightTextSlide[0].classList.remove('active');
+    mainTextSlide[0].style.opacity = "0";
+    mainTextSlide[0].classList.remove('active');
+    mainSlideProgressbar[0].classList.remove('active');
 
 
     // 올라가는 페이지
-    leftImgSlide[leftImgSlide.length-1].style.cssText = "z-index: 5; background-image: url(img/landing_slide_img_" + (leftImgSlide.length) + ".jpg); animation: bottomToTop 0.5s ease-in forwards;";
-    centerMenuSlide[leftImgSlide.length-1].style.opacity = "1";
-    discoverMoreBtn[leftImgSlide.length-1].style.opacity = "1";
-    rightTextSlide[leftImgSlide.length-1].style.opacity = "1";
-    rightTextSlide[leftImgSlide.length-1].classList.add('active');
-    for (let x=0; x<rightTextSlide[leftImgSlide.length-1].querySelectorAll('span').length; x++) {
-      rightTextSlide[leftImgSlide.length-1].querySelectorAll('span')[x].style = "transition-delay: " + (0.2 * x) + "s;";
+    mainImgSlide[slideNumber+1].style.zIndex = "5";
+    mainImgSlide[mainImgSlide.length-1].style.animation = "bottomToTop 0.5s ease-in forwards;";
+    mainCenterMenuChange[mainImgSlide.length-1].style.opacity = "1";
+    discoverMoreBtn[mainImgSlide.length-1].style.opacity = "1";
+    mainTextSlide[mainImgSlide.length-1].style.opacity = "1";
+    mainTextSlide[mainImgSlide.length-1].classList.add('active');
+    for (let x=0; x<mainTextSlide[mainImgSlide.length-1].querySelectorAll('span').length; x++) {
+      mainTextSlide[mainImgSlide.length-1].querySelectorAll('span')[x].style = "transition-delay: " + (0.2 * x) + "s;";
     }
-    slidePagination.innerHTML = "0" + (leftImgSlide.length);
+    mainSlidePagination.innerHTML = "0" + (mainImgSlide.length);
+    mainSlideProgressbar[mainImgSlide.length-1].classList.add('active');
 
     
-    slideNumber = leftImgSlide.length-1;
+    slideNumber = mainImgSlide.length-1;
 
     slideLoopRestart();
   }
@@ -171,15 +186,15 @@ function prevSlideShow() {
 
 
 
-// AUTOPLAY
+// MAIN SLIDE AUTOPLAY
 let loopState = 1;
-let slideLoop = setInterval(nextSlideShow, 3000);
+let slideLoop = setInterval(nextSlideShow, 10000);
 // 10초로 나중에 수정할것임
 
 function slideLoopRestart() {
   if (loopState == 1) {
     clearInterval(slideLoop);
-    slideLoop = setInterval(nextSlideShow, 3000);
+    slideLoop = setInterval(nextSlideShow, 10000);
   }
 }
 
@@ -189,7 +204,7 @@ function slideLoopRestart() {
 
 
 // LANDING SLIDE
-// SECTION 02------------------------------
+// SECTION 02: MENU SLIDE
 
 const menuSlideNextBtn = document.querySelector('.section02_slide_next_btn')
 const menuSlideFisrt = document.querySelector('.menu_slide_1')
@@ -215,22 +230,3 @@ function nextMenuSlideShow() {
     menuSlidePage = 0;
   }
 }
-
-
-// MOUSEOVER EVENT 미완
-// SECTION 02------------------------------
-
-// const menuItemImgBox = document.querySelectorAll('.section02_menu_item');
-// const menuItemImg = document.querySelectorAll('.section02_menu_item img');
-
-// for (let i=0; i<menuItemImgBox.length; i++) {
-// menuItemImgBox[i].addEventListener('mouseover', changeImg);
-// }
-
-
-// function changeImg() {
-//   for (i=0; i<menuItemImgBox.length; i++) {
-//     menuItemImg[i].src = "./img/product0"+ (i+1) + ".png";
-//   }
-//   // menuItemImgBox[]후...
-// }

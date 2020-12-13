@@ -172,15 +172,6 @@ header.none-bg .gnb-wrap{color: var(--text-white);}
 /*z-index값 : header 999, hamburger 9999(항상 최상위) whole-menu 9998(햄버거 토글로 열리는 전체메뉴)*/
 
 
-@keyframes fadeIn{
-  0%{opacity: 0;}
-  100%{opacity: 1;}
-}
-@keyframes fadeOut{
-  0%{opacity: 1;}
-  100%{opacity: 0;}
-}
-
 .shortcut-top-btn{z-index: 999; position: fixed; right: 50px; bottom: 50px; visibility: hidden; display: block; opacity: 0; width: 80px; height: 80px; transform: scale(0.9); border-radius: 50%; text-align: center; font-size: 16px; font-weight: bold; font-family: var(--font-barlow); letter-spacing: 1px; background-color: #fff; color: var(--core-gold); box-shadow: 3px 3px 18px 15px rgba(0,0,0,0.05); transition: all .3s;}
 .shortcut-top-btn .chevron-up{width: 14px; height: 14px; 
   border-top: 2px solid var(--core-gold);
@@ -241,4 +232,73 @@ footer {width: 100%;}
   width: 100%; padding: 15px 0;
   font-family: var(--font-barlow); letter-spacing: 0;
   background-color: var(--core-gold); 
+}
+
+
+
+
+
+/* ANIMATION KEYFRAME */
+
+@keyframes fadeIn{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+@keyframes fadeOut{
+  0%{opacity: 1;}
+  100%{opacity: 0;}
+}
+
+
+@keyframes bottomToTop {
+  0% {top: 100%;}
+  100% {top: 0;}
+}
+/* @keyframes topToBottom {
+  0% {top: 0}
+  100% {top: +100%}
+} */
+
+
+@keyframes rotateMenuItem {
+  0% {transform: rotate(2deg)}
+  50% {transform: rotate(-2deg)}
+  100% {transform: rotate(2deg)}
+}
+@keyframes rotateMenuItemReverse {
+  0% {transform: rotate(-2deg)}
+  50% {transform: rotate(2deg)}
+  100% {transform: rotate(-2deg)}
+}
+
+@keyframes mainSlideProgressbar {
+  0% {width: 0%;}
+  100% {width: 100%;}
+}
+
+
+@keyframes spinBgLogo {
+  0% {transform: rotate(0deg);}
+  50% {transform: rotate(180deg);}
+  100% {transform: rotate(360deg);}
+}
+
+
+@keyframes mouseOverMenuItem {
+  0% {
+    opacity: 1; 
+    transform: translate(0, 0); 
+    background-size: 30%;
+  }
+  100% {
+    opacity: 1; 
+    transform: translate(-20px, -20px);
+    background-size: 100%;
+  }
+}
+
+@keyframes mouseOutMenuItem {
+  0% {opacity: 1;}
+  25% {opacity: 0;}
+  100% {opacity: 0;}
 }
