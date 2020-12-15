@@ -38,26 +38,21 @@ gnbSubmenuItem.forEach(el => el.addEventListener('mouseleave', () => {
 
 
   if(window.innerWidth < 990){
-    wholeMenuTitle.forEach(el => el.addEventListener('click', toggleAccordion)) 
+    wholeMenuBox.forEach(el => el.addEventListener('click', toggleAccordion)) 
   }
 
 
 
 function toggleAccordion(el){
-  const targetAcc = el.currentTarget.nextElementSibling
-  const accMenu = document.querySelectorAll('.whole-menu-item-wrap')
-  console.log(targetAcc) 
-  if(targetAcc.classList.contains('mobile_on')){
-    targetAcc.classList.remove('mobile_on')
-  }else{
-    wholeMenuTitle.forEach(el => {
-      accMenu.forEach(el => {
-        el.classList.remove('mobile_on')
-      })
-    })
-    targetAcc.classList.add('mobile_on')
+  const targetAcc = el.currentTarget
+  for(let i = 0; i < wholeMenuBox.length ; i++){
+    if(wholeMenuBox[i].classList.contains('mobile_on')){
+      wholeMenuBox[i].classList.remove('mobile_on')
+    }else{
+      targetAcc.classList.add('mobile_on')
+    }
   }
-}
+  }
 
 // 햄버거 메뉴 관련 액션 총괄 함수
 function toggleHamburger() {

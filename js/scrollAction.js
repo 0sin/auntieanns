@@ -5,8 +5,8 @@ function scrollActions(){
 }
 
 function moveDown_BG_Pretzel(y){
-  const visualMovingPretzel = document.querySelector('.visual-moving-pretzle')
-  const StoryMovingPretzel = document.querySelector('.story-moving-pretzle')
+  const visualMovingPretzel = document.querySelector('.visual-moving-pretzel')
+  const StoryMovingPretzel = document.querySelector('.story-moving-pretzel')
   if(y < 191){
     visualMovingPretzel.style = ''
   }else if(y > 190){
@@ -15,8 +15,11 @@ function moveDown_BG_Pretzel(y){
  } 
   if(y > 270){
     console.log(y)
-    StoryMovingPretzel.style = `top: ${y -566}px;` 
-  }
+    StoryMovingPretzel.style = `top: ${y - 566}px;` 
+    if(y > 990){
+      StoryMovingPretzel.style = 'top: 425px; animation: fadeOut .5s ease-in forwards'  
+    }
+  } 
 }
 
 function showTopBtn(y){

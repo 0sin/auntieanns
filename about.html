@@ -98,7 +98,7 @@
             <a href="#">Menu<span class="title-hover-line"></span></a>
           </p>
           <div class="whole-menu-item-wrap auntieannes-menu">
-            <div class="pretzle-menu">
+            <div class="pretzel-menu">
               <li class="whole-menu-item"><a href="#">NEW</a></li>
               <li class="whole-menu-item"><a href="#">ALL</a></li>
               <li class="whole-menu-item"><a href="#">클래식 프레즐</a></li>
@@ -181,9 +181,9 @@
               Fax. 02. 587. 0956</p>
         </div>
         <ul class="sns-icon-wrap">
-          <li><a href="#"><img src="img/icon_sns_facebook.png" alt="앤티앤스 페이스북"></a></li>
-          <li><a href="#"><img src="img/icon_sns_instagram.png" alt="앤티앤스 인스타그램"></a></li>
-          <li><a href="#"><img src="img/icon_sns_naverBlog.png" alt="앤티앤스 네이버 블로그"></a></li>
+          <li class="sns-icon"><a href="#"><img src="img/icon_sns_facebook.png" alt="앤티앤스 페이스북"></a></li>
+          <li class="sns-icon"><a href="#"><img src="img/icon_sns_instagram.png" alt="앤티앤스 인스타그램"></a></li>
+          <li class="sns-icon"><a href="#"><img src="img/icon_sns_naverBlog.png" alt="앤티앤스 네이버 블로그"></a></li>
         </ul>
       </div>
     </div>
@@ -203,28 +203,32 @@
           <li><a href="#auntie-history">히스토리</a></li>
           </ul>
       </div>
-      <div class="about-visual-title-wrap">
-        <p class="about-visual-subtitle">BETTER THAN THE BEST<span>LIGHT</span></p>
-        <p class="about-visual-title">Auntie Anne’s Story</p>
+      <div class="about-title-wrap visual-title-wrap">
+        <p class="about-subtitle visual-subtitle">BETTER THAN THE BEST<span>LIGHT</span></p>
+        <p class="about-title visual-title">Auntie Anne’s Story</p>
       </div>
-      <div class="visual-moving-pretzle"></div>
+      <div class="visual-moving-pretzel"></div>
     </section>
     <section id="auntie-story">
-      <div class="story-moving-pretzle"></div>
+      <div class="story-moving-pretzel"></div>
       <div class="story-col-wrap">
         <div class="story-left-col">
-          <div class="story-img bg-dough"><img src="img/about/story_img_dough_458x563.jpg" alt="프레즐 반죽"></div>
-          <div class="story-descr-wrap">
+          <div class="story-img bg-dough"><img src="img/about/story_img_dough_458x563.jpg" class="bg-dough" alt="매장에서 반죽부터 직접 만드는 프레즐"></div>
+          <div class="story-descr-wrap descr-wrap-01">
             <p class="story-descr">매장에서 즉석으로 <b>반죽부터<br/>
               직접 만들어</b>신선합니다.<br/> 
             </p>
             <p class="story-sub-descr">즉석으로 발효시킨 반죽을 사용하여 신선함을 제공함과 동시에<br/>
               오픈 키친 형태의 매장 구조를 통해 신뢰감을 드립니다.</p>
           </div>
+          <div class="story-img"><img src="img/about/story_img_pretzle_960x651.jpg" class="bg-pretzel" alt="프레즐"></div>
+          <div class="story-img"><img src="img/about/story_img_spoon.png" class="bg-spoon" alt="땅콩버터"></div>
         </div>
         <div class="story-right-col">
-          <div class="story-img bg-makedough"><img src="img/about/story_img_makedough_830x1001.jpg" alt="프레즐 만들기"></div> 
-          <div class="story-descr-wrap">
+          <p class="bg-txt txt-pretzel">Pretzel</p>
+          <div class="story-img"><img src="img/about/story_img_makedough_830x1001.jpg" class="bg-makedough" alt="튀기지 않고 구운 프레즐에 버터를 묻혀 풍미가 가득합니다."></div>
+          <div class="story-img bg-peanutbutter"><img src="img/about/story_img_peanutbutter.png" class="bg-peanutbutter" alt="땅콩버터"></div>
+          <div class="story-descr-wrap descr-wrap-02">
             <p class="story-descr">튀기지 않고 맛있게<br/>
               구운 프레즐에 <b>버터를 묻혀<br/>
               풍미가 가득하고 담백</b>합니다.<br/> 
@@ -232,21 +236,44 @@
             <p class="story-sub-descr">손으로 직접 프레즐을 만들어 골든 브라운 색으로<br/>
               맛있게 구워진 프레즐에 버터를 묻히면 담백한 프레즐이 완성됩니다.</p>
           </div>
-          <p class="bg-txt butter">Butter</p>
+          <p class="bg-txt txt-butter">Butter</p>
         </div>
       </div>
-      <video autoplay loop muted>
-        <source src="video/" type="">
+      <video class="story-bg-video" poster="img/about/story_video_poster01.jpg" autoplay loop muted>
+        <source src="video/baked_pretzel.webm" type="video/webm">
+        <source src="video/baked_pretzel.mp4" type="video/mp4">
       </video>
-      <p class="story-descr">오븐에서 갓 구운 프레즐을<br/>
-        <b>워머에 보관하여 언제나<br/>
-        따뜻한 프레즐</b>을 제공합니다.
-      </p>
-      <p class="story-descr"><b>신선한 레몬을 짜서 만든</b> 무탄산 레몬에이드로<br/>
-        <b>목넘김이 부드럽고 상큼</b>합니다.
-      </p>
+      <div class="warmer-wrap">
+        <p class="story-descr">오븐에서 갓 구운 프레즐을<br/>
+          <b>워머에 보관하여 언제나<br/>
+          따뜻한 프레즐</b>을 제공합니다.
+        </p>
+        <div class="warmer-img-box">
+          <p class="bg-txt txt-warmer">Warmer</p> 
+          <img src="img/about/story_pretzel_413x367.png" class="warmer-img bg-warmer-hover" alt="갓 구운 프레즐을 워머에 보관하여 따뜻하게 제공합니다.">
+          <img src="img/about/story_pretzel_hover_413x367.png" class="warmer-img bg-warmer" alt="갓 구운 프레즐을 워머에 보관하여 따뜻하게 제공합니다.">
+        </div>
+      </div>
+      <div class="lemonade-wrap">
+        <p class="story-descr descr-lemonade"><b>신선한 레몬을 짜서 만든</b> 무탄산 레몬에이드로<br/>
+          <b>목넘김이 부드럽고 상큼</b>합니다.
+        </p>
+        <div class="lemonade-img-box">
+          <img src="img/about/story-lemon01.png" class="moving-lemon lemon01" alt="레몬">
+          <img src="img/about/story-lemon02.png" class="moving-lemon lemon02" alt="레몬">
+          <img src="img/about/story-lemon03.png" class="moving-lemon lemon03" alt="레몬">
+          <img src="img/about/story-lemon04.png" class="moving-lemon lemon04" alt="레몬">
+          <img src="img/about/story_img_lemonade.jpg" class="bg-lemonade" alt="신선한 레몬을 직접 짜서 만든 무탄산 레몬에이드">
+        </div>
+      </div>
     </section>
-    <section id="identity"></section>
+    <section id="identity">
+      <div class="about-title-wrap identity-title-wrap">
+        <p class="about-subtitle identity-subtitle">BETTER THAN THE BEST<span>LIGHT</span></p>
+        <p class="about-title identity-title">Auntie Anne’s Identity</p>
+      </div>
+      <p>Brand Identity</p>
+    </section>
     <section id="auntie-history"></section>
   </main>
   <script src="js/header.js"></script>
