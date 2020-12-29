@@ -1,2 +1,2 @@
-# Last Update: 12.28 MON Section 03, 04, Footer
-모바일 사이즈 대응
+# Last Update: 12.29 TUE Section 02
+모바일 사이즈까지 대응
