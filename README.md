@@ -1,2 +1,2 @@
-# Last Update: 12.29 TUE Section 02
-모바일 사이즈까지 대응
+# Last Update: 12.30 WED Section 01 Mobile Slide
+모바일 슬라이드 제작
