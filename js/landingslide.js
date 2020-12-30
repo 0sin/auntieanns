@@ -203,6 +203,108 @@ function slideLoopRestart() {
 
 
 
+// MOBILE SLIDE
+let moMainSlideLeftPosition = function() {
+  const mobileSlide = document.querySelectorAll('.m_slide_item');
+  
+  for (let i=0; i<mobileSlide.length; i++) {
+    mobileSlide[i].style.left = 100 * i + "%";
+  }
+}
+moMainSlideLeftPosition();
+
+
+// INDEX BUTTON STYLE CHANGE
+let moIndexActive = function(idx) {
+  const moIndexBtn = document.querySelectorAll('.m_num_index_item');
+
+  for (let i=0; i<moIndexBtn.length; i++) {
+    moIndexBtn[i].classList.remove('active');
+  }
+  moIndexBtn[idx].classList.add('active');
+}
+
+// SLIDE TEXT SHOW
+let moSlideTextShow = function(idx) {
+  const moSlideText = document.querySelectorAll('.m_slide_text_wrap');
+
+  for (let i=0; i<moSlideText.length; i++) {
+    moSlideText[i].classList.remove('active');
+  }
+  moSlideText[idx].classList.add('active');
+}
+
+// SLIDE SHOW
+let currentIndex;
+let goToSlide = function(idx) {
+  const mobileSlideWrap = document.querySelector('.m_slide_wrap');
+
+  mobileSlideWrap.style.left = -100 * idx + "%";
+  mobileSlideWrap.classList.add('active');
+  
+  currentIndex = idx;
+  moIndexActive(currentIndex);
+  moSlideTextShow(currentIndex);
+}
+
+// 첫화면 호출
+goToSlide(0);
+
+
+// PREV, NEXT BUTTON CLICK
+const moNextBtn = document.querySelector('.m_next_btn')
+const moPrevBtn = document.querySelector('.m_prev_btn')
+
+moNextBtn.addEventListener('click', function() {
+  if (currentIndex > 1) {
+    goToSlide(0);
+    currentIndex = 0;
+  } else {
+    goToSlide(currentIndex + 1);
+  }
+});
+
+moPrevBtn.addEventListener('click', function() {
+  if (currentIndex > 0) {
+    goToSlide(currentIndex - 1);
+  } else {
+    currentIndex = 3;
+    goToSlide(currentIndex - 1);
+  }
+});
+
+// INDEX BUTTON CLICK
+// const moIndexBtn = document.querySelectorAll('.m_num_index_item');
+
+// for (let i=0; i<moIndexBtn.length; i++) {
+//   moIndexBtn[i].addEventListener('click', function() {
+
+//   }
+// )};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // LANDING SLIDE
 // SECTION 02: MENU SLIDE
 

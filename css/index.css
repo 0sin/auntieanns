@@ -240,7 +240,123 @@ button:focus {outline: none; border: none;}
   background-color: var(--core-gold);
   animation: mainSlideProgressbar 10s linear;
 }
-/* linear로 하면 끝부분이 살짝 짤리는 문제가... 왜땀시... 원래 사이트는 ease-in-out으로 했는데 그렇게 하면 더 짤림... 추후 수정할것/
+
+
+
+/* MOBILE SLIDE */
+.section01_m_container {
+  display: none;
+  width: 100%; height: 100%;
+  background-color: var(--core-blue);
+  position: relative; overflow: hidden;
+}
+
+.m_slide_wrap {
+  max-width: 300%; height: 100%;
+  position: relative; 
+}
+.m_slide_wrap.active {
+  -webkit-transition: left .3s ease-in; 
+  transition: left .3s ease-in; 
+}
+
+.m_slide_item {
+  width: 100%; height: 100%;
+  position: absolute; top: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.m_slide_item:nth-child(1) {background-image: url(../img/landing_slide_mo_1.png);}
+.m_slide_item:nth-child(2) {background-image: url(../img/landing_slide_mo_2.png);}
+.m_slide_item:nth-child(3) {background-image: url(../img/landing_slide_mo_3.png);}
+
+.m_slide_menu_img {
+  width: 55%; z-index: 50;
+  position: absolute; bottom: 2%; right: 5%;
+  animation: rotateMenuItem 3s ease infinite;
+}
+.m_slide_menu_img img {width: 100%;}
+
+
+/* MOBILE SLIDE TEXT */
+.m_slide_text_wrap {margin: 100px 50px 0; overflow: hidden;}
+
+.m_slide_text_title {
+  font-weight: bold; line-height: 1;
+  display: blcok; 
+  transform: translate3d(0px, -100%, 0px);
+  opacity: 0; transition: all .7s;
+  overflow: hidden; 
+}
+.m_slide_text_title.eng {
+  font-family: var(--font-garamond); 
+  font-size: 60px; 
+}
+.m_slide_text_title.kor {
+  font-family: var(--font-notoSans); 
+  font-size: 50px; margin: 10px 0 0;
+}
+
+.m_slide_text_desc {
+  color: var(--text-white);
+  font-size: 16px; font-weight: 500;
+  margin: 15px 0 35px; word-break: keep-all;
+  transform: translate3d(0px, -100%, 0px);
+  opacity: 0; transition: all .7s;
+  overflow: hidden;
+}
+
+.m_slide_text_wrap.active .m_slide_text_title {
+  opacity: 1; transform: translate3d(0px, 0px, 0px);
+}
+.m_slide_text_wrap.active .m_slide_text_desc {
+  opacity: 1; transform: translate3d(0px, 0px, 0px);
+  transition-delay: .6s;
+}
+
+
+
+
+/* MOBILE PREV NEXT BTN */
+.m_prev_next_btn {
+  width: 120px; height: 60px;
+  display: flex; cursor: pointer;
+  position: absolute; bottom: 0; left: 0; z-index: 100;
+  font-size: 35px; font-weight: 500; text-align: center;
+}
+.m_prev_btn {
+  width: 50%; height: 100%;
+  background-color: var(--text-white);
+  color: var(--core-blue);
+}
+.m_next_btn {
+  width: 50%; height: 100%;
+  background-color: var(--core-blue);
+  color: var(--text-white);
+}
+
+
+/* NUMBER INDEX */
+.m_num_index {
+  position: absolute; z-index: 100;
+  top: 35%; left: 50px;
+  width: 180px; height: 50px;
+  cursor: pointer;
+}
+.m_num_index_item {
+  width: 50px; height: 50px; margin: 0 4px 0 0;
+  display: inline-block; text-align: center;
+  font-family: var(--font-barlow); color: var(--text-white);
+  font-size: 20px; line-height: 42px;
+}
+.m_num_index_item.active {
+  border-radius: 25px;
+  border: 2px dotted var(--text-white); 
+  color: var(--core-gold);
+}
+
 
 
 
@@ -498,6 +614,7 @@ button:focus {outline: none; border: none;}
   .pepperoni {left: 7%;}
 }
 
+
 @media screen and (max-width: 1560px) {
   /* SECTION 02 */ 
   .section02_menu_item {width: 444px; height: 444px;}
@@ -581,8 +698,10 @@ button:focus {outline: none; border: none;}
 }
 
 
-@media screen and (max-width: 1023px) {
+/* ipad pro size */
+@media screen and (max-width: 1024px) {
   /* SECTION 01 */ 
+  #section01 {height: 780px;}
   .main_center_menu_item {width: 200px;}
   .main_slide_text_item {padding: 0 0 0 120px;}
 
@@ -591,7 +710,7 @@ button:focus {outline: none; border: none;}
   #section02 {height: 780px;}
   .section02_title {font-size: 45px;}
   .section02_menu_text {top: 25%; left: 75%;}
-  .section02_menu_item {width: 30vh; height: 30vh;}
+  .section02_menu_item {width: 23vh; height: 23vh;}
   .americano {top: 36vh;}
   .hotdog {top: 38vh;}
 
@@ -631,8 +750,14 @@ button:focus {outline: none; border: none;}
 }
 
 
+/* 메인 슬라이드 -> 태블릿, 모바일용으로 변경 */
 @media screen and (max-width: 768px) {
   /* SECTION 01 */ 
+  #section01 {height: 880px;}
+  .section01_container {display: none;}
+  .section01_m_container {display: block;}
+
+
   /* SECTION 02 */ 
   #section02 {height: 880px;}
   .section02_slide_container {position: static;}
@@ -669,7 +794,6 @@ button:focus {outline: none; border: none;}
   .section03_img_box img {
     height: auto; max-width: auto; width: 100%;
     margin: 0 auto;
-    transition: opacity .4s;
   }
 
 
@@ -681,6 +805,7 @@ button:focus {outline: none; border: none;}
   .section04_caption_img_box {width: 100%; height: 320px;}
   .section04_caption_img {max-width: 500px; margin: 0 0 0 auto;}
   .section04_blue_box {bottom: -1%; right: -2%; width: 55%; height: 75%;}
+
 }
 
 
@@ -692,6 +817,11 @@ button:focus {outline: none; border: none;}
 
 @media screen and (max-width: 540px) {
   /* SECTION 01 */ 
+  .m_slide_text_wrap {padding: 110px 30px 0;}
+  .m_slide_text_title.eng {font-size: 48px;}
+  .m_slide_text_title.kor {font-size: 28px;}
+  .m_slide_text_desc {font-size: 14px;}
+  
   /* SECTION 02 */ 
   .almonde {left: 4%;}
   .americano {left: 4%;}
@@ -704,6 +834,7 @@ button:focus {outline: none; border: none;}
   .section04_caption_img {max-width: 100%; margin: 0;}
   .section04_blue_box {bottom: 3%; right: 3%;}
 }
+
 
 
 
@@ -773,6 +904,7 @@ button:focus {outline: none; border: none;}
 }
 
 
+/* iPhone 5 지원 */
 @media screen and (max-width: 320px) {
   .section02_menu_item {width: 25vh; height: 25vh;}
   .americano {left: 50%;}
