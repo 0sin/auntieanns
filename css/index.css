@@ -352,7 +352,7 @@ button:focus {outline: none; border: none;}
   font-size: 20px; line-height: 42px;
 }
 .m_num_index_item.active {
-  border-radius: 25px;
+  border-radius: 100%;
   border: 2px dotted var(--text-white); 
   color: var(--core-gold);
 }
@@ -698,7 +698,7 @@ button:focus {outline: none; border: none;}
 }
 
 
-/* ipad pro size */
+/* iPad pro size */
 @media screen and (max-width: 1024px) {
   /* SECTION 01 */ 
   #section01 {height: 780px;}
@@ -727,7 +727,6 @@ button:focus {outline: none; border: none;}
 
 
 @media screen and (max-width: 860px) {
-  /* SECTION 01 */ 
   /* SECTION 02 */ 
   #section02 {height: 680px;}
   .section02_menu_item {width: 23vh; height: 23vh;}
@@ -776,7 +775,7 @@ button:focus {outline: none; border: none;}
   .section02_menu_img_box:hover img:last-child {opacity: 0; animation: none;}
 
 
-  /* SECTION 03: columm */
+  /* SECTION 03: column */
   #section03 {height: 100%;}
   .section03_container {
     width: 100%; height: 100%;
@@ -797,7 +796,7 @@ button:focus {outline: none; border: none;}
   }
 
 
-  /* SECTION 04: columm*/
+  /* SECTION 04: column*/
   #section04 {height: 100%; padding: 80px 0 80px 30px;}
   .section04_container {flex-flow: column;}
   .section04_text_item {width: 100%; height: 100%; margin: 0 0 20px}
@@ -817,7 +816,7 @@ button:focus {outline: none; border: none;}
 
 @media screen and (max-width: 540px) {
   /* SECTION 01 */ 
-  .m_slide_text_wrap {padding: 110px 30px 0;}
+  .m_slide_text_wrap {margin: 110px 30px 0;}
   .m_slide_text_title.eng {font-size: 48px;}
   .m_slide_text_title.kor {font-size: 28px;}
   .m_slide_text_desc {font-size: 14px;}
@@ -841,8 +840,17 @@ button:focus {outline: none; border: none;}
 /* 모바일 사이즈 대응: 420px */
 @media screen and (max-width: 420px) {
   /* SECTION 01 */ 
+  #section01 {height: 80vh;}
+  .m_num_index {
+    width: 160px; height: 45px;
+    top: 48%; left: 30px;
+  }
+  .m_num_index_item {width: 45px; height: 45px;}
+  .m_slide_menu_img {width: 50%; bottom: 0%; right: 3%;}
+
+
   /* SECTION 02 */
-  #section02 {height: 82vh;}
+  #section02 {height: 80vh;}
   .section02_title {margin: 10vh auto 0;}
   .section02_bg_title {display: none;}
   .section02_menu_text {
@@ -861,7 +869,7 @@ button:focus {outline: none; border: none;}
 
 
   /* SECTION 03 */
-  #section03 {height: 82vh;}
+  #section03 {height: 80vh;}
   .section03_container {padding: 0px;}
   .section03_card {height: 100%; margin: 0 auto;}
   .section03_img_box img {opacity: .7;}
@@ -906,6 +914,7 @@ button:focus {outline: none; border: none;}
 
 /* iPhone 5 지원 */
 @media screen and (max-width: 320px) {
+  #section01 {height: 100vh;}
   .section02_menu_item {width: 25vh; height: 25vh;}
   .americano {left: 50%;}
   .americano .section02_menu_text {left: -82%;}

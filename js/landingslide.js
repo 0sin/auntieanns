@@ -189,7 +189,6 @@ function prevSlideShow() {
 // MAIN SLIDE AUTOPLAY
 let loopState = 1;
 let slideLoop = setInterval(nextSlideShow, 10000);
-// 10초로 나중에 수정할것임
 
 function slideLoopRestart() {
   if (loopState == 1) {
@@ -234,6 +233,8 @@ let moSlideTextShow = function(idx) {
   moSlideText[idx].classList.add('active');
 }
 
+
+
 // SLIDE SHOW
 let currentIndex;
 let goToSlide = function(idx) {
@@ -245,52 +246,62 @@ let goToSlide = function(idx) {
   currentIndex = idx;
   moIndexActive(currentIndex);
   moSlideTextShow(currentIndex);
+  // moSlideLoopRestart() //먹지 않음...
+  console.log(currentIndex);
 }
 
 // 첫화면 호출
 goToSlide(0);
 
 
-// PREV, NEXT BUTTON CLICK
-const moNextBtn = document.querySelector('.m_next_btn')
-const moPrevBtn = document.querySelector('.m_prev_btn')
 
-moNextBtn.addEventListener('click', function() {
+
+// NEXT SLIDE
+let moSlideNext = function() {
   if (currentIndex > 1) {
     goToSlide(0);
     currentIndex = 0;
   } else {
     goToSlide(currentIndex + 1);
   }
-});
+}
 
-moPrevBtn.addEventListener('click', function() {
+// PREV SLIDE
+let moSlidePrev = function() {
   if (currentIndex > 0) {
     goToSlide(currentIndex - 1);
   } else {
     currentIndex = 3;
     goToSlide(currentIndex - 1);
   }
-});
+}
+
+
+// PREV, NEXT BUTTON CLICK
+const moNextBtn = document.querySelector('.m_next_btn')
+const moPrevBtn = document.querySelector('.m_prev_btn')
+
+moPrevBtn.addEventListener('click', moSlidePrev);
+moNextBtn.addEventListener('click', moSlideNext);
+
+
 
 // INDEX BUTTON CLICK
-// const moIndexBtn = document.querySelectorAll('.m_num_index_item');
+const moIndexBtn = document.querySelectorAll('.m_num_index_item');
 
-// for (let i=0; i<moIndexBtn.length; i++) {
-//   moIndexBtn[i].addEventListener('click', function() {
-
-//   }
-// )};
+moIndexBtn.forEach(el => el.addEventListener('click', () => {
+  goToSlide(el.innerText - 1);
+}));
 
 
 
+// AUTOPLAY
+moSlideLoop = setInterval(moSlideNext, 5000);
 
-
-
-
-
-
-
+function moSlideLoopRestart() {
+    clearInterval(moSlideLoop);
+    moSlideLoop = setInterval(moSlideNext, 5000);
+}
 
 
 
@@ -305,19 +316,27 @@ moPrevBtn.addEventListener('click', function() {
 
 
 
-// LANDING SLIDE
+
+
+
+
+
+
+
+
+
+
 // SECTION 02: MENU SLIDE
-
+// NEXT SLIDE
 const menuSlideNextBtn = document.querySelector('.section02_slide_next_btn')
-const menuSlideFisrt = document.querySelector('.menu_slide_1')
-const menuSlideSecond = document.querySelector('.menu_slide_2')
-
 let menuSlidePage = 0;
 
-// NEXT SLIDE
 menuSlideNextBtn.addEventListener('click', nextMenuSlideShow);
 
 function nextMenuSlideShow() {
+  const menuSlideFisrt = document.querySelector('.menu_slide_1')
+  const menuSlideSecond = document.querySelector('.menu_slide_2')
+  
   if (menuSlidePage == 0) {
     menuSlideFisrt.style.left = "-100%";
     menuSlideSecond.style.left = "0";
