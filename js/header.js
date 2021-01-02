@@ -5,6 +5,7 @@ const gnbSubmenuItem = document.querySelectorAll('.gnb-submenu-item')
 const wholeMenuBox = document.querySelectorAll('.whole-menu-box')
 const wholeMenuTitle = document.querySelectorAll('.whole-menu-title')
 const wholeMenuItem = document.querySelectorAll('.whole-menu-item')
+const wholeMenuContainer = document.querySelector('.whole-menu-container')
 
 
 /* gnb 메뉴명 마우스 오버시 색상변경 & 밑줄생성 & 서브메뉴
@@ -37,10 +38,6 @@ gnbSubmenuItem.forEach(el => el.addEventListener('mouseleave', () => {
 }))
 
 
-  if(window.innerWidth < 990){
-    wholeMenuBox.forEach(el => el.addEventListener('click', toggleAccordion)) 
-  }
-
 
 
 function toggleAccordion(el){
@@ -52,7 +49,21 @@ function toggleAccordion(el){
       targetAcc.classList.add('mobile_on')
     }
   }
+}
+
+function activeMobileAcc(){
+  if(window.innerWidth < 990){
+    wholeMenuBox.forEach(el => el.addEventListener('click', toggleAccordion)) 
   }
+}
+window.addEventListener('resize', activeMobileAcc) 
+activeMobileAcc()
+
+wholeMenuItem.forEach(el => el.addEventListener('click', () => {
+  hamburgerWrap.classList.remove('on')
+  wholeMenuContainer.classList.remove('on')
+}))
+
 
 // 햄버거 메뉴 관련 액션 총괄 함수
 function toggleHamburger() {
@@ -71,7 +82,6 @@ function chageHamburgerShape(target) {
 }
 // 햄버거 메뉴 클릭시 전체 메뉴 오픈
 function openWholeMenu(target) {
-  const wholeMenuContainer = document.querySelector('.whole-menu-container')
   if (target.classList.contains('on')) {
     wholeMenuContainer.classList.add('on')
   } else {
