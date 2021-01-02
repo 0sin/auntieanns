@@ -15,7 +15,6 @@ button:focus {outline: none; border: none;}
 .discover_more_btn_wrap a {
   width: 100%; height: 100%;
   display: inline-flex; align-items: center;
-  /* position: relative; */
 }
 
 .plus_animation_btn {
@@ -31,7 +30,9 @@ button:focus {outline: none; border: none;}
   width: 62px; height: 62px;
   position: absolute; top: -6px; left: -6px;
   border-radius: 50%;
-  background: url(../img/btn-blue.png) no-repeat center center;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url(../img/btn-white.png);
 }
 
 .plus_bar {
@@ -120,6 +121,7 @@ button:focus {outline: none; border: none;}
 }
 
 .main_slide_text_item_wrap {
+  display: none;
   width: 100%; height: 100%;
   position: absolute; top: 0; left: 0;
   z-index: 1;
@@ -137,9 +139,10 @@ button:focus {outline: none; border: none;}
 .main_slide_text_item span {
   display: inline-block;
   transform: translate3d(0px, -100%, 0px);
-  transition: transform 0.5s;
+  transition: transform .5s;
 }
-.main_slide_text_item.active span {
+.main_slide_text_item_wrap.active {display: block;}
+.main_slide_text_item_wrap.active .main_slide_text_item span {
   display: inline-block;
   transform: translate3d(0px, 0px, 0px);
 }
@@ -165,9 +168,7 @@ button:focus {outline: none; border: none;}
   margin: 20px 0 50px; overflow: hidden;
 }
 
-.slide_discover_btn {opacity: 0; transition: opacity 2s;}
-
-.main_slide_text_item .plus_animation_btn::after {background: url(../img/btn-white.png) no-repeat center center;}
+.slide_discover_btn {transition: all 2s;}
 .main_slide_text_item .plus_bar {background-color: var(--text-white);}
 
 
@@ -281,14 +282,12 @@ button:focus {outline: none; border: none;}
 
 
 /* MOBILE SLIDE TEXT */
-.m_slide_text_wrap {margin: 100px 50px 0; overflow: hidden;}
+.m_slide_text_wrap {margin: 100px 50px 0;}
 
 .m_slide_text_title {
   font-weight: bold; line-height: 1;
-  display: blcok; 
-  transform: translate3d(0px, -100%, 0px);
-  opacity: 0; transition: all .7s;
-  overflow: hidden; 
+  display: blcok;
+  overflow: hidden;
 }
 .m_slide_text_title.eng {
   font-family: var(--font-garamond); 
@@ -303,19 +302,19 @@ button:focus {outline: none; border: none;}
   color: var(--text-white);
   font-size: 16px; font-weight: 500;
   margin: 15px 0 35px; word-break: keep-all;
-  transform: translate3d(0px, -100%, 0px);
-  opacity: 0; transition: all .7s;
   overflow: hidden;
 }
 
-.m_slide_text_wrap.active .m_slide_text_title {
-  opacity: 1; transform: translate3d(0px, 0px, 0px);
-}
-.m_slide_text_wrap.active .m_slide_text_desc {
-  opacity: 1; transform: translate3d(0px, 0px, 0px);
-  transition-delay: .6s;
+.m_slide_text_wrap span {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0px, -100%, 0px);
+  transition: transform .7s;
 }
 
+.m_slide_text_wrap.active span {
+  opacity: 1; transform: translate3d(0px, 0px, 0px);
+}
 
 
 
@@ -563,7 +562,9 @@ button:focus {outline: none; border: none;}
   font-size: 22px;
   margin: 20px 0 60px;
 }
-
+.section04_text_item .plus_animation_btn::after {
+  background-image: url(../img/btn-blue.png);
+}
 .section04_text_item .discover_more_text {color: var(--core-blue);}
 
 .section04_caption_img_box {
@@ -647,14 +648,15 @@ button:focus {outline: none; border: none;}
 /* 1200부터는 fullpage 사라지고 scrollbar로 변함 */
 @media screen and (max-width: 1200px) {
   /* 공통 */
-  body::-webkit-scrollbar {display: none;}
-  .plus_animation_btn {width: 34px; height: 34px;}
+  /* body::-webkit-scrollbar {display: block;} */
+  .plus_animation_btn {width: 35px; height: 35px; line-height: 34px;}
   
   .plus_animation_btn::after {
-    width: 44px; height: 44px;
+    width: 45px; height: 45px;
     position: absolute; top: -5px; left: -5px;
-    background-size: 100%;
+    background-size: cover;
   }
+
   .plus_bar:first-child {width: 13px;}
   .plus_bar:last-child {height: 13px;}
 
