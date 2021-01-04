@@ -1,88 +1,61 @@
+const auntieHistory = document.querySelector('#auntie-history')
 const hsBtnPrev = document.querySelector('.hs-btn-prev')
 const hsBtnNext = document.querySelector('.hs-btn-next')
 const historySlide = document.querySelector('.history-slide')
-const dragableSlide = document.querySelector('.slide-contents-wrap')
-
-const contentsNum = dragableSlide.children.length
+const slideConWrap = document.querySelector('.slide-contents-wrap')
 
 
-
-let historyIdx = 0
-
-function historySlide_Init(){
-  if(window.innerWidth < 1501){
-    historySlide.classList.add('on') 
-  }
-}
-historySlide_Init()
+let historySlide_Idx = 0
 
 function historySlideToPrev(x){
-  x = dragableSlide.children[0].clientWidth
-  if(historyIdx === 0){
+  x = slideConWrap.children[0].clientWidth
+  if(historySlide_Idx === 0){
     historySlide.classList.remove('on')
-  }else if(historyIdx !== 0 && historyIdx > 0){
-    historyIdx--
-    dragableSlide.style.left = -(x + 30) * historyIdx + 'px'
+  }else if(historySlide_Idx !== 0 && historySlide_Idx > 0){
+    historySlide_Idx--
+    slideConWrap.style.left = -(x + 30) * historySlide_Idx + 'px'
   }
 }
 function historySlideToNext(){
-  x = dragableSlide.children[0].clientWidth
+  x = slideConWrap.children[0].clientWidth
+  const contentsNum = slideConWrap.children.length
 
   if(!historySlide.classList.contains('on')){
     historySlide.classList.add('on')
-  }else if(historySlide.classList.contains('on') && historyIdx < contentsNum - 2){
-    historyIdx++    
-    dragableSlide.style.left = -(x + 30) * historyIdx + 'px'
+  }else if(historySlide.classList.contains('on') && historySlide_Idx < contentsNum - 2){
+    historySlide_Idx++    
+    slideConWrap.style.left = -(x + 30) * historySlide_Idx + 'px'
   }
 }
-
-
 
 hsBtnPrev.addEventListener('click', historySlideToPrev)
 hsBtnNext.addEventListener('click', historySlideToNext)
 
+//태블릿 사이즈 이하 슬라이드
+const historyYear = document.querySelectorAll('.history-year')
+const historyPageList = document.querySelectorAll('.history-page-list')
+const historyPage = document.querySelectorAll('.history-page')
 
-let isMouseDown = false 
-let startPoint
-let endPoint
-let dragDistance
 
-dragableSlide.addEventListener('mousedown', (e) => {
-  isMouseDown = true 
-  e.preventDefault()
-  startPoint = e.pageX
-  console.log('down'+ e.pageX, dragableSlide.clientWidth)
+// for(let i = 0; i < historyPage.length; i++){
+//   if(historyPage[i].classList.contains('on')){
+//     historyPage[i].innerText = historyYear[i].innerText
+//   }else if(!historyPage[i].classList.contains('on')){
+//     historyPage[i].innerText = ''
+//   }
+// }
 
-})
-dragableSlide.addEventListener('mouseup', (e) => {
-  isMouseDown = false
-  endPoint = e.pageX
-  console.log('up'+e.pageX,) 
-})
-dragableSlide.addEventListener('mouseleave', (e) => {
-  isMouseDown = false
-  endPoint = e.pageX
-  console.log('leave'+e.pageX,) 
-})
 
-dragableSlide.addEventListener('mousemove', (e)=>{
-  if(!isMouseDown) return
-  dragDistance = startPoint - endPoint
-  dragDistance += dragDistance
-  console.log(dragDistance)
-  e.preventDefault()
-  if(dragDistance > 0){ 
-    dragableSlide.style.left = -dragDistance + 'px' 
+function historySlide_Tab_init(){
+  const y = window.scrollY
+  let width =  window.innerWidth
+
+  if(width < 1025 && y > auntieHistory.offsetTop){
+    console.log(auntieHistory.offsetTop)
+    slideConWrap.style.left = -500 + 'px'
+
   }
+}
 
-  // for(let i = 0; i < contentsNum - 2; i++){
-  //  if(dragDistance > 0 && dragDistance <= i * x && historyIdx < contentsNum - 2){
-  //     historyIdx = i
-  //     dragableSlide.style.left = -(x + 30) * historyIdx + 'px' 
-  //   }
-  //   if(dragDistance < 0 && -dragDistance <= i * x && historyIdx > 0){
-  //     historyIdx--
-  //     dragableSlide.style.left = -(x + 30) * historyIdx + 'px'
-  //   }
-  // }
-})
+window.addEventListener('resize', historySlide_Tab_init) 
+historySlide_Tab_init()

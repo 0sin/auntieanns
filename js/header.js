@@ -1,9 +1,8 @@
-// 전역 변수 선언. 태그 또는 클래스명과 동일하게 지정함
+// 전역 변수 선언
 const gnbItem = document.querySelectorAll('.gnb-item')
 const hamburgerWrap = document.querySelector('.hamburger-wrap');
 const gnbSubmenuItem = document.querySelectorAll('.gnb-submenu-item')
 const wholeMenuBox = document.querySelectorAll('.whole-menu-box')
-const wholeMenuTitle = document.querySelectorAll('.whole-menu-title')
 const wholeMenuItem = document.querySelectorAll('.whole-menu-item')
 const wholeMenuContainer = document.querySelector('.whole-menu-container')
 
@@ -38,38 +37,50 @@ gnbSubmenuItem.forEach(el => el.addEventListener('mouseleave', () => {
 }))
 
 
-
-
 function toggleAccordion(el){
-  const targetAcc = el.currentTarget
-  for(let i = 0; i < wholeMenuBox.length ; i++){
-    if(wholeMenuBox[i].classList.contains('mobile_on')){
-      wholeMenuBox[i].classList.remove('mobile_on')
-    }else{
-      targetAcc.classList.add('mobile_on')
-    }
-  }
+  const targetClass = el.currentTarget.classList;
+
+  if (targetClass.contains('mobile_on')){
+    targetClass.remove('mobile_on')
+  } 
+  else{ 
+    wholeMenuBox.forEach(el => el.classList.remove('mobile_on')) 
+    targetClass.add('mobile_on');
+  } 
 }
+
 
 function activeMobileAcc(){
-  if(window.innerWidth < 990){
-    wholeMenuBox.forEach(el => el.addEventListener('click', toggleAccordion)) 
+    const width = window.innerWidth
+
+  if(width < 990){
+    wholeMenuBox.forEach(function (el){
+      el.addEventListener('click', toggleAccordion)
+  });
   }
 }
-window.addEventListener('resize', activeMobileAcc) 
-activeMobileAcc()
 
-wholeMenuItem.forEach(el => el.addEventListener('click', () => {
-  hamburgerWrap.classList.remove('on')
-  wholeMenuContainer.classList.remove('on')
-}))
+// 아코디언 메뉴 클릭시 전체메뉴 닫힘
+function closeWholeMenu(){
+  wholeMenuItem.forEach(el => el.addEventListener('click', () => {
+    hamburgerWrap.classList.remove('on')
+    wholeMenuContainer.classList.remove('on')
+  }))
+}
 
+// 햄버거 메뉴 클릭으로 전체메뉴가 닫히면 열려있던 아코디언 메뉴도 닫힘
+function closeAccordion(){
+  if(!hamburgerWrap.classList.contains('on')){
+    wholeMenuBox.forEach(el => el.classList.remove('mobile_on')) 
+  }
+}
 
 // 햄버거 메뉴 관련 액션 총괄 함수
 function toggleHamburger() {
   const target = hamburgerWrap
   chageHamburgerShape(target)
   openWholeMenu(target)
+  closeAccordion()
 }
 
 // 햄버거 메뉴 클릭시 모양 변경
@@ -90,3 +101,7 @@ function openWholeMenu(target) {
 }
 // 햄버거 메뉴 관련 함수 init
 hamburgerWrap.addEventListener('click', toggleHamburger)
+
+window.addEventListener('resize', activeMobileAcc) 
+activeMobileAcc()
+closeWholeMenu()
