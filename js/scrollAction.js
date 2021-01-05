@@ -1,13 +1,21 @@
 function scrollActions(){
   const y = window.scrollY
   let isMobile =  window.innerWidth < 768
-  console.log(y)
+
+  const story = document.querySelector('#auntie-story')
+  const identity = document.querySelector('#identity')
+  const philosophy = document.querySelector('#auntie-philosophy') 
+  const history = document.querySelector('#auntie-history') 
+
+  // console.log(y)
   moveDown_BG_Pretzel(y, isMobile)
   showTopBtn(y)
-  fadeIn_Story(y)
-  fadeUp_CiImg(y, isMobile)
-  fadeUp_ColorWrap(y)
-  movePhiloCircle(y, isMobile)
+  fadeIn_Story(y, story)
+  fadeUp_CiImg(y, isMobile, identity)
+  fadeUp_ColorWrap(y, identity)
+  fadeIn_philoTitle(y, philosophy)
+  movePhiloCircle(y, isMobile, philosophy)
+  active_M_historySlide(y, history)
 }
 
 function moveDown_BG_Pretzel(y, isMobile){
@@ -36,14 +44,14 @@ function showTopBtn(y){
   }
 }
 
-function fadeIn_Story(y){
-  const story = document.querySelector('#auntie-story')
+function fadeIn_Story(y, story){ 
   const bgPretzel = document.querySelector('.bg-pretzel')
   const fadeUpText01 = document.querySelector('.descr-wrap-02')
   const fadeUpText02 = document.querySelector('.warmer-descr')
+
   const trigger01 = story.offsetTop + bgPretzel.clientHeight
   const trigger02 = fadeUpText02.offsetTop
-
+  
   if(y > trigger01){
     bgPretzel.style = 'animation: fadeIn_toRight 1.3s forwards;'
     fadeUpText01.style = 'animation: fadeIn_Up 1s forwards;'
@@ -53,10 +61,10 @@ function fadeIn_Story(y){
   }
 }
 
-function fadeUp_CiImg(y, isMobile){
+function fadeUp_CiImg(y, isMobile, identity){ 
   const ciImg01 = document.querySelector('.identity-ci-wrap').children[0]
   const ciImg02 = document.querySelector('.identity-ci-wrap').children[1]
-  const identity = document.querySelector('#identity')
+  
   const trigger = identity.offsetTop
 
   if(y > trigger && !isMobile){
@@ -69,22 +77,33 @@ function fadeUp_CiImg(y, isMobile){
   } 
 }
 
-function fadeUp_ColorWrap(y){
-  const identity = document.querySelector('#identity')
+function fadeUp_ColorWrap(y, identity){ 
   const identityDescr = document.querySelector('.identity-descr-wrap')
   const colorWrap = document.querySelector('.core-color-wrap')
+
   const trigger = identity.offsetTop + (identityDescr.clientHeight / 3)
+
   if(y > trigger){
     colorWrap.style = 'animation: fadeIn_Up 1s forwards;'
   } 
 }
 
-function movePhiloCircle(y, isMobile){
-  const philosophy = document.querySelector('#auntie-philosophy')
+function fadeIn_philoTitle(y, philosophy){ 
+  const philoTitle = document.querySelector('.philosophy-title')
+
+  const trigger = philosophy.offsetTop - 320
+
+  if(y > trigger){
+    philoTitle.style = 'animation: fadeIn 1s forwards;'
+  }
+}
+
+function movePhiloCircle(y, isMobile, philosophy){ 
   const philoCircleWrap = document.querySelector('.philo-circle-wrap')
   const philoCircle = document.querySelectorAll('.philosophy-circle')
-  const trigger = philosophy.offsetTop - 320
   
+  const trigger = philosophy.offsetTop - 320
+
   if(y > trigger && !isMobile){
     philoCircle.forEach(el => {
       el.classList.add('active')
@@ -107,6 +126,13 @@ function movePhiloCircle(y, isMobile){
       philoCircle[2].style = `bottom: ${x}px;`
       philoCircleWrap.classList.add('out')
     }, 1500); 
+  }
+}
+
+function active_M_historySlide(y, history){
+  const trigger = history.offsetTop - 120
+  if(y > trigger){
+    console.log(y, trigger)
   }
 
 }
