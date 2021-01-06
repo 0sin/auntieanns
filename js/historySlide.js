@@ -61,13 +61,13 @@ function change_HistoryPageClass(slideIdx, slideLength){
   
 }
 
-function autoPlay_HistorySlide(x, slideLength){
+function init_HistorySlide_Tab(x, slideLength){
 
   autoPlayInit =  setInterval(() => {
     slideIdx++    
     slideConWrap.style = `transform: translateX(-${ (x + 30) * slideIdx}px); transition: all .7s`
 
-    // console.log(slideIdx)
+    console.log(slideIdx)
     change_HistoryPageClass(slideIdx, slideLength)
 
     if(slideIdx === slideLength + 1){    
@@ -89,32 +89,22 @@ function clickPagination_toPageHistory(x, slideLength) {
 
       clearInterval(autoPlayInit)
       setTimeout(() => {
-        autoPlay_HistorySlide(x, slideLength)
+        init_HistorySlide_Tab(x, slideLength)
       }, 500)
     })
   })
 }
 
 
-function init_Tab_HistorySlide(){
-  const x = slideConWrap.children[0].clientWidth 
-
-  const slideLength = historyPage.length
-
+document.addEventListener("DOMContentLoaded", () => {
   if(window.innerWidth < 1025){
+    const x = slideConWrap.children[0].clientWidth 
+    const slideLength = historyPage.length
     historyPage[0].classList.add('on')
 
     appendSlide()
-    autoPlay_HistorySlide(x, slideLength) 
+    init_HistorySlide_Tab(x, slideLength) 
     clickPagination_toPageHistory(x, slideLength)
-  }else{
-    clearInterval(autoPlayInit)
+    console.log(historyPage.length)
   }
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  init_Tab_HistorySlide()
 });
-
-window.addEventListener('resize', init_Tab_HistorySlide())
