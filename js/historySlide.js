@@ -3,11 +3,14 @@ const hsBtnPrev = document.querySelector('.hs-btn-prev')
 const hsBtnNext = document.querySelector('.hs-btn-next')
 const historySlide = document.querySelector('.history-slide')
 const slideConWrap = document.querySelector('.slide-contents-wrap')
+const historyPage = document.querySelectorAll('.history-page')
 
 
 let historySlide_Idx = 0
 
-function historySlideToPrev(x){
+
+
+function historySlideToPrev(){
   x = slideConWrap.children[0].clientWidth
   if(historySlide_Idx === 0){
     historySlide.classList.remove('on')
@@ -31,72 +34,87 @@ function historySlideToNext(){
 hsBtnPrev.addEventListener('click', historySlideToPrev)
 hsBtnNext.addEventListener('click', historySlideToNext)
 
+
 //태블릿 사이즈 이하 슬라이드
-const historyYear = document.querySelectorAll('.history-year')
-const historyPage = document.querySelectorAll('.history-page')
-const pageLine = document.querySelectorAll('.page-line')
-
 let autoPlayInit
-let count = 0
-console.log(count)
+let slideIdx = 0
 
-function progressPageLine(){
-  const progressLine = pageLine[count].querySelector('span')
+function appendSlide(){
+  const slideClone_1st = slideConWrap.firstElementChild.cloneNode(true)
+  const slideClone_2nd = slideConWrap.children[1].cloneNode(true)
+  const slideClone_3rd = slideConWrap.children[2].cloneNode(true)
 
-  historyPage[count].classList.add('on')
-  progressLine.style = 'width: 100%; transition: width 5s;'
-
-  setTimeout(() => {
-    historyPage[count].classList.remove('on')
-    progressLine.style = ''
-  }, 3890);
+  slideConWrap.append(slideClone_1st, slideClone_2nd, slideClone_3rd)
 }
 
-function init_HistorySlide_Tab(){
+function change_HistoryPageClass(slideIdx, slideLength){
+  for(let i = 0; i < slideLength; i++){
+    if(historyPage[i] === historyPage[slideIdx]){
+      historyPage[slideIdx].classList.add('on')
+    }else if(slideIdx === 0 || slideIdx === slideLength || slideIdx === slideLength + 1){
+      historyPage[0].classList.add('on')
+      historyPage[slideLength - 1 ].classList.remove('on')
+    }else{
+      historyPage[i].classList.remove('on') 
+    }        
+  }
+  
+}
+
+function autoPlay_HistorySlide(x, slideLength){
+
   autoPlayInit =  setInterval(() => {
-    const slideLength = pageLine.length
-    const x = slideConWrap.children[0].clientWidth 
-    count++
-    
-    slideConWrap.style = `left: -${ (x + 30) * count}px; transition: left .7s` 
-    
-    if(count === slideLength){
-      slideConWrap.style = `transition: auto;`
-      count = 0
+    slideIdx++    
+    slideConWrap.style = `transform: translateX(-${ (x + 30) * slideIdx}px); transition: all .7s`
+
+    // console.log(slideIdx)
+    change_HistoryPageClass(slideIdx, slideLength)
+
+    if(slideIdx === slideLength + 1){    
+      slideIdx = 0
+      slideConWrap.style = `transform: translateX(0); transition: auto;` 
     }
-}, 3900);
+}, 1000);
+} 
+
+function clickPagination_toPageHistory(x, slideLength) {
+  historyPage.forEach( (el, i) => {
+    el.addEventListener('click', () => { 
+      
+      slideIdx = i
+      console.log(slideIdx, i)
+      slideConWrap.style = `transform: translateX(-${ (x + 30) * slideIdx}px); transition: all .7s` 
+      change_HistoryPageClass(slideIdx, slideLength)
+
+
+      clearInterval(autoPlayInit)
+      setTimeout(() => {
+        autoPlay_HistorySlide(x, slideLength)
+      }, 500)
+    })
+  })
 }
 
-function checkTabletSize_Init(){
+
+function init_Tab_HistorySlide(){
+  const x = slideConWrap.children[0].clientWidth 
+
+  const slideLength = historyPage.length
+
   if(window.innerWidth < 1025){
-    init_HistorySlide_Tab()
-    window.removeEventListener('resize', checkTabletSize_Init)
+    historyPage[0].classList.add('on')
+
+    appendSlide()
+    autoPlay_HistorySlide(x, slideLength) 
+    clickPagination_toPageHistory(x, slideLength)
   }else{
     clearInterval(autoPlayInit)
   }
 }
 
-function appendSlide(){
-  const slideClone_1st = slideConWrap.children[0].cloneNode(true)
-  const slideClone_2nd = slideConWrap.children[1].cloneNode(true)
-  const slideClone_3rd = slideConWrap.children[2].cloneNode(true)
-  const slideClone_4th = slideConWrap.children[3].cloneNode(true)
 
-  slideConWrap.append(slideClone_1st, slideClone_2nd, slideClone_3rd, slideClone_4th)
-}
+document.addEventListener("DOMContentLoaded", () => {
+  init_Tab_HistorySlide()
+});
 
-appendSlide()
-
-function clickPagination_toPageHistory() {
-  historyPage.forEach( (el, i) => {
-    el.addEventListener('click', () => {
-      const x = slideConWrap.children[0].clientWidth;
-      slideConWrap.style.left = -(x + 30) * i + 'px'
-      count = i
-    })
-  })
-}
-clickPagination_toPageHistory()
-checkTabletSize_Init() 
-window.addEventListener('resize', checkTabletSize_Init) 
-
+window.addEventListener('resize', init_Tab_HistorySlide())

@@ -15,7 +15,7 @@ function scrollActions(){
   fadeUp_ColorWrap(y, identity)
   fadeIn_philoTitle(y, philosophy)
   movePhiloCircle(y, isMobile, philosophy)
-  active_M_historySlide(y, history)
+  // active_Tab_historySlide(y, philosophy, history)
 }
 
 function moveDown_BG_Pretzel(y, isMobile){
@@ -129,12 +129,16 @@ function movePhiloCircle(y, isMobile, philosophy){
   }
 }
 
-function active_M_historySlide(y, history){
-  const trigger = history.offsetTop - 120
-  if(y > trigger){
-    console.log(y, trigger)
-  }
+// function active_Tab_historySlide(y, philosophy, history){
+//   const p_height = philosophy.clientHeight
+//   const trigger = history.offsetTop
 
-}
+//   if(y > trigger - p_height && window.innerWidth < 1025){
+//     history.classList.add('Tab')
+//     window.removeEventListener('scroll', active_Tab_historySlide)
+//   }else{
+//     history.classList.remove('Tab') 
+//   }
+// }
 
 window.addEventListener('scroll', scrollActions)
