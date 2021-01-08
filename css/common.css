@@ -299,7 +299,6 @@ footer {width: 100%;}
 
 
 /* ANIMATION KEYFRAME */
-
 @keyframes fadeIn{
   0%{opacity: 0;}
   100%{opacity: 1;}
@@ -309,17 +308,17 @@ footer {width: 100%;}
   100%{opacity: 0;}
 }
 
-
+/* 메인슬라이드 NEXT, PREV 이미지 변화 */
 @keyframes bottomToTop {
   0% {top: 100%;}
   100% {top: 0;}
 }
-/* @keyframes topToBottom {
-  0% {top: 0}
-  100% {top: +100%}
-} */
+@keyframes topToBottom {
+  0% {top: -100%;}
+  100% {top: 0;}
+}
 
-
+/* 메뉴 아이템 */
 @keyframes rotateMenuItem {
   0% {transform: rotate(2deg)}
   50% {transform: rotate(-2deg)}

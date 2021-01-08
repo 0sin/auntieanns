@@ -95,7 +95,25 @@ button:focus {outline: none; border: none;}
   position: absolute; top: 0; left: 0;
   background: no-repeat center center;
   background-size: cover;
+  transition: top 1s;
 }
+.main_slide_img_item.next {
+  animation: bottomToTop 0.5s ease-in forwards; 
+}
+.main_slide_img_item.prev {
+  animation: topToBottom 0.5s ease-in forwards; 
+}
+
+.main_slide_img_item:nth-child(1) {
+  background-image: url(../img/landing_slide_img_1.jpg);
+}
+.main_slide_img_item:nth-child(2) {
+  background-image: url(../img/landing_slide_img_2.jpg);
+}
+.main_slide_img_item:nth-child(3) {
+  background-image: url(../img/landing_slide_img_3.jpg);
+}
+/* z-index: 5; */
 
 
 /* MAIN CENTER IMG */
@@ -104,7 +122,7 @@ button:focus {outline: none; border: none;}
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10; opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity .3s;
 }
 .main_center_menu_item img {
   width: 100%;
@@ -117,14 +135,6 @@ button:focus {outline: none; border: none;}
 .main_slide_text_wrap {
   width: 50%; height: 100%;
   position: absolute; top: 0; right: 0;
-  overflow: hidden;
-}
-
-.main_slide_text_item_wrap {
-  display: none;
-  width: 100%; height: 100%;
-  position: absolute; top: 0; left: 0;
-  z-index: 1;
 }
 
 .main_slide_text_item {
@@ -134,16 +144,17 @@ button:focus {outline: none; border: none;}
   padding: 0 150px 0 220px;
   color: var(--text-white);
   word-break: keep-all;
+  overflow: hidden;
+  opacity: 0; z-index: 1;
 }
 
 .main_slide_text_item span {
   display: inline-block;
   transform: translate3d(0px, -100%, 0px);
-  transition: transform .5s;
+  transition: transform .7s;
 }
-.main_slide_text_item_wrap.active {display: block;}
-.main_slide_text_item_wrap.active .main_slide_text_item span {
-  display: inline-block;
+.main_slide_text_item.active {opacity: 1; z-index: 5;}
+.main_slide_text_item.active span {
   transform: translate3d(0px, 0px, 0px);
 }
 
@@ -168,7 +179,11 @@ button:focus {outline: none; border: none;}
   margin: 20px 0 50px; overflow: hidden;
 }
 
-.slide_discover_btn {transition: all 2s;}
+.slide_discover_btn {
+  transition-delay: 1.2s;
+  transition: opacity 1.5s; 
+  margin: 0 0 30px;
+}
 .main_slide_text_item .plus_bar {background-color: var(--text-white);}
 
 

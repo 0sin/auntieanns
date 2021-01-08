@@ -1,186 +1,173 @@
 // LANDING SLIDE
 // SECTION 01: MAIN SLIDE------------------------------------ 
 
-// 변수 선언
-const mainPrewBtn = document.querySelector('.main_slide_btn.prev');
-const mainNextBtn = document.querySelector('.main_slide_btn.next');
+// MAIN SLIDE OBJECT
+const mainSlide = {
+  mainImgSlide: document.querySelectorAll('.main_slide_img_item'),
+  mainCenterMenuChange: document.querySelectorAll('.main_center_menu_item'),
+  mainTextSlide: document.querySelectorAll('.main_slide_text_item'),
+  mainTextBtn: document.querySelectorAll('.slide_discover_btn'),
+  mainSlidePagination: document.querySelector('.main_slide_pagination'),
+  mainSlideProgressbar: document.querySelectorAll('.progressbar'),
 
-const mainImgSlide = document.querySelectorAll('.main_slide_img_item');
-const mainCenterMenuChange = document.querySelectorAll('.main_center_menu_item');
-const mainTextSlide = document.querySelectorAll('.main_slide_text_item_wrap');
-
-const mainSlidePagination = document.querySelector('.main_slide_pagination');
-const mainSlideProgressbar = document.querySelectorAll('.progressbar');
-
-let slideNumber = 0; //0일때 첫페이지
-
-
-// 첫화면 로딩
-function fistSlideShow () {
-  mainImgSlide[0].style.zIndex = "5";
-  mainCenterMenuChange[0].style.opacity = "1";
-  mainSlideProgressbar[0].classList.add('active');
-  mainTextSlide[0].classList.add('active');
-}
-fistSlideShow();
-
-
-// NEXT SLIDE
-mainNextBtn.addEventListener('click', nextSlideShow);
-
-function nextSlideShow() {
-  if(slideNumber != mainImgSlide.length-1) { // 마지막 페이지가 아닐때
-    // 현재페이지 그대로 유지
-    mainImgSlide[slideNumber].style.zIndex = "1";
-    mainImgSlide[mainImgSlide.length-1].style.zIndex = "0"; //이미지 1번에서 2번으로 넘어갈때 마지막 슬라이드가 1번보다 z-index 값이 낮아야함
-    mainImgSlide[slideNumber].style.animation = "";
-    
-    // 메뉴이미지 사라짐
-    mainCenterMenuChange[slideNumber].style.opacity = "0";
-    
-    // 텍스트 사라짐
-    mainTextSlide[slideNumber].classList.remove('active');
-    // 프로그레스바 초기화
-    mainSlideProgressbar[slideNumber].classList.remove('active');
-    
-    
-    // 올라가는 다음페이지
-    mainImgSlide[slideNumber+1].style.zIndex = "5";
-    mainImgSlide[slideNumber+1].style.animation = "bottomToTop 0.5s ease-in forwards";
-
-    // 메뉴이미지 생김
-    mainCenterMenuChange[slideNumber+1].style.opacity = "1";
-
-    // 텍스트 위에서 아래로 내려옴
-    mainTextSlide[slideNumber+1].classList.add('active');
-    for (let x=0; x<mainTextSlide[slideNumber+1].querySelectorAll('span').length; x++) {
-      mainTextSlide[slideNumber+1].querySelectorAll('span')[x].style = "transition-delay: " + (0.2 * x) + "s;";
-    }
-
-    // 페이지 번호 바뀜, 프로그레스바
-    mainSlidePagination.innerHTML = "0" + (slideNumber+2);
-    mainSlideProgressbar[slideNumber+1].classList.add('active');
-    
-    
-    slideNumber++;
-    
-    slideLoopRestart();
-  }
-  
-  else { //마지막 슬라이드일 때
-    // 현재페이지 그대로 유지
-    mainImgSlide[slideNumber].style.zIndex = "1";
-    mainImgSlide[slideNumber].style.animation = "";
-    mainCenterMenuChange[slideNumber].style.opacity = "0";
-    mainTextSlide[slideNumber].classList.remove('active');
-    mainSlideProgressbar[slideNumber].classList.remove('active');
-
-
-    // 올라가는 페이지
-    mainImgSlide[0].style.zIndex = "5";
-    mainImgSlide[0].style.animation = "bottomToTop 0.5s ease-in forwards";
-    mainCenterMenuChange[0].style.opacity = "1";
-    mainTextSlide[0].classList.add('active');
-    for (let x=0; x<mainTextSlide[0].querySelectorAll('span').length; x++) {
-      mainTextSlide[0].querySelectorAll('span')[x].style = "transition-delay: " + (0.2 * x) + "s;";
-    }
-    mainSlidePagination.innerHTML = "01";
-    mainSlideProgressbar[0].classList.add('active');
-
-    
-    slideNumber = 0;
-
-    slideLoopRestart();
-  }
-}
-
-
-// PREV SLIDE
-mainPrewBtn.addEventListener('click', prevSlideShow);
-
-function prevSlideShow() {
-  if(slideNumber != 0) { // 첫 페이지가 아닐때
-    // 현재페이지 그대로 유지
-    mainImgSlide[slideNumber].style.zIndex = "0";
-    //mainImgSlide[.style.zIndex = "1"; //이미지 2번에서 1번으로 넘어갈때 마지막 슬라이드가 2번보다 z-index 값이 낮아야함
-    mainImgSlide[slideNumber].style.animation = "";
-
-    // 메뉴이미지 사라짐
-    mainCenterMenuChange[slideNumber].style.opacity = "0";
-
-    // 텍스트 사라짐
-    mainTextSlide[slideNumber].classList.remove('active');
-    // 프로그레스바
-    mainSlideProgressbar[slideNumber].classList.remove('active');
-    
-      
-    // 내려가는 다음페이지
-    mainImgSlide[slideNumber-1].style.zIndex = "5";
-    mainImgSlide[slideNumber-1].style.animation = "bottomToTop 0.5s ease-in forwards";
-
-    // 메뉴이미지 생김
-    mainCenterMenuChange[slideNumber-1].style.opacity = "1";
-
-    // 텍스트 위에서 아래로 내려옴
-    mainTextSlide[slideNumber-1].classList.add('active');
-    for (let x=0; x<mainTextSlide[slideNumber-1].querySelectorAll('span').length; x++) {
-      mainTextSlide[slideNumber-1].querySelectorAll('span')[x].style = "transition-delay: " + (0.2 * x) + "s;";
-    }
-
-    // 페이지 번호 바뀜, 프로그레스바
-    mainSlidePagination.innerHTML = "0" + (slideNumber);
-    mainSlideProgressbar[slideNumber].classList.add('active');
-    
-    
-    slideNumber--;
-
-    slideLoopRestart();
-    
-  }
-  
-  else { //처음 슬라이드일 때
-    // 현재페이지 그대로 유지
-    mainImgSlide[0].style.zIndex = "1";
-    mainImgSlide[0].style.animation = "";
-    mainCenterMenuChange[0].style.opacity = "0";
-    mainTextSlide[0].classList.remove('active');
-    mainSlideProgressbar[0].classList.remove('active');
-
-
-    // 올라가는 페이지
-    mainImgSlide[slideNumber+1].style.zIndex = "5";
-    mainImgSlide[mainImgSlide.length-1].style.animation = "bottomToTop 0.5s ease-in forwards;";
-    mainCenterMenuChange[mainImgSlide.length-1].style.opacity = "1";
-    mainTextSlide[mainImgSlide.length-1].classList.add('active');
-    for (let x=0; x<mainTextSlide[mainImgSlide.length-1].querySelectorAll('span').length; x++) {
-      mainTextSlide[mainImgSlide.length-1].querySelectorAll('span')[x].style = "transition-delay: " + (0.2 * x) + "s;";
-    }
-    mainSlidePagination.innerHTML = "0" + (mainImgSlide.length);
-    mainSlideProgressbar[mainImgSlide.length-1].classList.add('active');
-
-    
-    slideNumber = mainImgSlide.length-1;
-
-    slideLoopRestart();
-  }
-}
-
-
-// TEXT 순차적으로 내려오는 함수
-// let textTransDelay = function() {
-
-// }
-
-
+  slideIdx: 0 //0일때 페이지네이션 01
+};
 
 
 // MAIN SLIDE AUTOPLAY
-let slideLoop = setInterval(nextSlideShow, 10000);
+let mainSlideLoop = setInterval(mainSlide.slideNext, 10000);
 
-function slideLoopRestart() {
-  clearInterval(slideLoop);
-  slideLoop = setInterval(nextSlideShow, 10000);
+function mainSlideLoopRestart() {
+  // console.log("clear작동확인");
+  // console.log(mainSlideLoop);
+  clearInterval(mainSlideLoop);
+  mainSlideLoop = setInterval(mainSlide.slideNext, 10000);
 }
+
+
+// MENU IMG CHANGE
+mainSlide.menuImgChange = function(idx) {
+  let menuImg = this.mainCenterMenuChange;
+  for (let i=0; i<menuImg.length; i++) {
+    menuImg[i].style.opacity = "0";
+  }
+  menuImg[idx].style.opacity = "1";
+}
+
+
+// MENU TEXT CHANGE
+mainSlide.textChange = function(idx) {
+  let textWrap = this.mainTextSlide;
+  let btn = this.mainTextBtn;
+  
+
+  for (let i=0; i<textWrap.length; i++) {
+    btn[i].style.opacity = "0";
+    textWrap[i].classList.remove('active');
+  }
+  
+  btn[idx].style.opacity = "1";
+  textWrap[idx].classList.add('active');
+  for (let x=0; x<textWrap[idx].querySelectorAll('span').length; x++) {
+    textWrap[idx].querySelectorAll('span')[x].style = `transition-delay: ${0.2 * x}s`;
+  }
+}
+
+// Pagination
+mainSlide.pagination = function(idx) {
+  this.mainSlidePagination.innerHTML = `0${idx+1}`;
+}
+
+// PROGRESSBAR
+mainSlide.progressbar = function(idx) {
+  let progressbar = this.mainSlideProgressbar;
+  
+  for (let i=0; i<progressbar.length; i++) {
+    progressbar[i].classList.remove('active');
+  }
+  progressbar[idx].classList.add('active');
+}
+
+
+// SLIDE SHOW
+mainSlide.slideShow = function(index) {
+  this.slideIdx += index;
+  
+  // Next, Prev Pagination 처리
+  if (this.slideIdx > 2) {
+    this.slideIdx = 0;
+  } else if (this.slideIdx < 0) {
+    this.slideIdx = 2;
+  }
+  
+  mainSlide.menuImgChange(this.slideIdx);
+  mainSlide.textChange(this.slideIdx);
+  mainSlide.pagination(this.slideIdx);
+  mainSlide.progressbar(this.slideIdx);
+  mainSlideLoopRestart();
+}
+
+// SLIDE NEXT
+mainSlide.slideNext = function() {
+  mainSlide.slideShow(1);
+  mainSlide.imgSlideNext();
+}
+// SLIDE PREV
+mainSlide.slidePrev = function() {
+  mainSlide.slideShow(-1);
+  mainSlide.imgSlidePrev();
+}
+
+
+// IMG SLIDE NEXT : 이미지 bottomToTop
+mainSlide.imgSlideNext = function() {
+  let idx = this.slideIdx;
+  let len = this.mainImgSlide.length;
+  let slideImg = this.mainImgSlide;
+  
+  // 페이지네이션 01에서 02로 넘어갈 때 예외처리
+  if (idx === 1) {
+    for (let i=0; i<len; i++) {
+      slideImg[i].style.zIndex = `${i+1}`;
+      slideImg[i].className = 'main_slide_img_item';
+    }
+    slideImg[idx-1].style.zIndex = "9"; //직전 페이지 예외처리
+    slideImg[idx].style.zIndex = "10";
+    slideImg[idx].classList.add('next');
+  } else {
+    for (let i=0; i<len; i++) {
+      slideImg[i].style.zIndex = `${i+1}`;
+      slideImg[i].className = 'main_slide_img_item';
+    }
+    slideImg[idx].style.zIndex = "10";
+    slideImg[idx].classList.add('next');
+  }
+}
+
+
+// IMG SLIDE PREV : 이미지 topToBottom
+mainSlide.imgSlidePrev = function() {
+  let idx = this.slideIdx;
+  let len = this.mainImgSlide.length;
+  let slideImg = this.mainImgSlide;
+  console.log(idx);
+
+  // 페이지네이션 01에서 03로 넘어갈 때 예외처리
+  if (idx === 2) {
+    for (let i=0; i<len; i++) {
+      slideImg[i].style.zIndex = `${i+1}`;
+      slideImg[i].className = 'main_slide_img_item';
+    }
+    slideImg[0].style.zIndex = "9"; //첫페이지 예외처리
+    slideImg[idx].style.zIndex = "10";
+    slideImg[idx].classList.add('prev');
+  } else {
+    for (let i=0; i<len; i++) {
+      slideImg[i].style.zIndex = `${i+1}`;
+      slideImg[i].className = 'main_slide_img_item';
+    }
+    slideImg[idx+1].style.zIndex = "9";
+    slideImg[idx].style.zIndex = "10";
+    slideImg[idx].classList.add('prev');
+  }
+}
+
+
+// NEXT BTN CLICK
+mainSlide.mainNextBtn = document.querySelector('.main_slide_btn.next');
+mainSlide.mainNextBtn.addEventListener('click', mainSlide.slideNext);
+
+// PREV BTN CLICK
+mainSlide.mainPrevBtn = document.querySelector('.main_slide_btn.prev');
+mainSlide.mainPrevBtn.addEventListener('click', mainSlide.slidePrev);
+
+
+// 메인 함수 실행 -> 로딩시 1회 실행(즉시 실행 함수)
+(function main(x) {
+  mainSlide.slideShow(x);
+  mainSlide.imgSlideNext();
+})(0);
+
 
 
 
