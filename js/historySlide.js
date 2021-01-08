@@ -61,7 +61,7 @@ function change_HistoryPageClass(slideIdx, slideLength){
   
 }
 
-function init_HistorySlide_Tab(x, slideLength){
+function autoPlay_Tab_HistorySlide(x, slideLength){
 
   autoPlayInit =  setInterval(() => {
     slideIdx++    
@@ -74,7 +74,7 @@ function init_HistorySlide_Tab(x, slideLength){
       slideIdx = 0
       slideConWrap.style = `transform: translateX(0); transition: auto;` 
     }
-}, 1000);
+}, 3000);
 } 
 
 function clickPagination_toPageHistory(x, slideLength) {
@@ -89,22 +89,40 @@ function clickPagination_toPageHistory(x, slideLength) {
 
       clearInterval(autoPlayInit)
       setTimeout(() => {
-        init_HistorySlide_Tab(x, slideLength)
+        autoPlay_Tab_HistorySlide(x, slideLength)
+
+        console.log(slideIdx, autoPlayInit)
+
       }, 500)
     })
   })
 }
 
+function init_Tab_HistorySlide(){
+  const x = slideConWrap.children[0].clientWidth 
+  const slideLength = historyPage.length
+  historyPage[0].classList.add('on')
 
+  appendSlide()
+  autoPlay_Tab_HistorySlide(x, slideLength) 
+  clickPagination_toPageHistory(x, slideLength)
+}
+
+
+window.addEventListener('resize', () => {
+  if(window.innerWidth > 1024){
+    slideIdx = 0
+    clearInterval(autoPlayInit)
+  }else{
+    init_Tab_HistorySlide()
+  }
+})
 document.addEventListener("DOMContentLoaded", () => {
-  if(window.innerWidth < 1025){
-    const x = slideConWrap.children[0].clientWidth 
-    const slideLength = historyPage.length
-    historyPage[0].classList.add('on')
-
-    appendSlide()
-    init_HistorySlide_Tab(x, slideLength) 
-    clickPagination_toPageHistory(x, slideLength)
-    console.log(historyPage.length)
+  if(window.innerWidth > 1024){
+    slideIdx = 0 
+    clearInterval(autoPlayInit)
+  }else{
+    init_Tab_HistorySlide()
   }
 });
+
