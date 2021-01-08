@@ -7,3 +7,4 @@
 0sin-branch 12.29 TUE Update Section 02 mobile size<br>
 0sin-branch 12.30 WED Add section01 mobile slide<br>
 0sin-branch 1.2 SAT Add Footer go to top btn, Fix section01 mobile slide<br>
+0sin-branch 1.8 FRI Create New Main Slide <br>
