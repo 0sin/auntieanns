@@ -58,7 +58,6 @@ function change_HistoryPageClass(slideIdx, slideLength){
       historyPage[i].classList.remove('on') 
     }        
   }
-  
 }
 
 function autoPlay_Tab_HistorySlide(x, slideLength){
@@ -82,16 +81,15 @@ function clickPagination_toPageHistory(x, slideLength) {
     el.addEventListener('click', () => { 
       
       slideIdx = i
-      console.log(slideIdx, i)
       slideConWrap.style = `transform: translateX(-${ (x + 30) * slideIdx}px); transition: all .7s` 
+
       change_HistoryPageClass(slideIdx, slideLength)
-
-
       clearInterval(autoPlayInit)
+
       setTimeout(() => {
         autoPlay_Tab_HistorySlide(x, slideLength)
 
-        console.log(slideIdx, autoPlayInit)
+        console.log(slideIdx)
 
       }, 500)
     })
@@ -115,6 +113,7 @@ window.addEventListener('resize', () => {
     clearInterval(autoPlayInit)
   }else{
     init_Tab_HistorySlide()
+    window.removeEventListener('resize', init_Tab_HistorySlide)
   }
 })
 document.addEventListener("DOMContentLoaded", () => {
