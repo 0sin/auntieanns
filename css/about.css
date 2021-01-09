@@ -332,7 +332,7 @@ html, body{scroll-behavior: smooth;}
   #auntie-history .history-slide-btn{display: none;}
   .history-slide .history-slide-container{margin: 0;}
   .history-slide-container .slide-contents-wrap{left: auto;}
-  .slide-contents-wrap .slide-contents{min-width: 320px;}
+  .slide-contents-wrap .slide-contents{max-width: 400px; min-width: 320px;}
   .slide-contents .history-descr{font-size: 14px;}
   #auntie-history .history-pagination-wrap{display: flex; justify-content: center; margin: 40px auto 0;}
 
