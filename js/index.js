@@ -18,8 +18,6 @@ const mainSlide = {
 let mainSlideLoop = setInterval(mainSlide.slideNext, 10000);
 
 function mainSlideLoopRestart() {
-  // console.log("clear작동확인");
-  // console.log(mainSlideLoop);
   clearInterval(mainSlideLoop);
   mainSlideLoop = setInterval(mainSlide.slideNext, 10000);
 }
@@ -53,7 +51,7 @@ mainSlide.textChange = function(idx) {
   }
 }
 
-// Pagination
+// PAGINATION
 mainSlide.pagination = function(idx) {
   this.mainSlidePagination.innerHTML = `0${idx+1}`;
 }
@@ -130,7 +128,6 @@ mainSlide.imgSlidePrev = function() {
   let idx = this.slideIdx;
   let len = this.mainImgSlide.length;
   let slideImg = this.mainImgSlide;
-  console.log(idx);
 
   // 페이지네이션 01에서 03로 넘어갈 때 예외처리
   if (idx === 2) {
@@ -311,4 +308,42 @@ function nextMenuSlideShow() {
     menuSlidePage = 0;
   }
 }
+
+
+
+
+// HEADER COLOR CHANGE
+const headerColorChange = function() {
+  const section02 = document.querySelector('#section02').offsetTop;
+  const section03 = document.querySelector('#section03').offsetTop;
+  const section04 = document.querySelector('#section04').offsetTop;
+
+  const header = document.getElementsByTagName('header');
+  const headerGnbWrap = document.querySelector('.gnb-wrap');
+
+  const widthSize = window.innerWidth;
+  console.log(widthSize);
+  const currentY = window.pageYOffset;
+  console.log(currentY);
+
+  if (widthSize > 1200) {
+    if (currentY >= section02 && currentY < section03) { 
+      headerGnbWrap.classList.add('color-black');
+    } else if (currentY >= section03 && currentY < section04) { 
+      headerGnbWrap.classList.remove('color-black');
+    } else if (currentY >= section04) { 
+      headerGnbWrap.classList.add('color-black');
+    } else {
+      headerGnbWrap.classList.remove('color-black');
+    }
+  } else if (widthSize <= 1200 && widthSize > 768) {
+    if (currentY >= section02) { 
+      header[0].classList.remove('none-bg');
+    } else {
+      header[0].classList.add('none-bg');
+    }
+  }
+}
+
+document.addEventListener('scroll', headerColorChange);
 
