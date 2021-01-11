@@ -62,9 +62,16 @@ function appendSlide(){
 // YEAR INDEX STYLE CHANGE
 function change_HistoryPageClass(){ 
   if(currIdx >= slideLength){
+    /*
+    예외조건. appendslide로 맨앞이 2019인 상태
+    slideLength는 13. currIdx는 14까지 움직이므로 currIdx가 13이상일 때
+    페이지네이션 도트 1988에 on
+    slideLength - 1 = 페이지네이션 도트 2019는 on 제거
+    */
     historyPage[0].classList.add('on')
-    historyPage[slideLength - 1 ].classList.remove('on')
+    historyPage[slideLength - 1].classList.remove('on')
   }else{
+    // 예외조건을 제외하고는 순차적으로 on/off
     for(let i = 0; i < slideLength; i++){
       historyPage[i].classList.remove('on');
     }
@@ -86,12 +93,6 @@ function tabletSizeSlideShow() {
     }
   change_HistoryPageClass(); 
 }
-
-
-// AUTO PALY
-
-// = setInterval(tabletSizeSlideShow, 3000, 1); 
-//1=index 인자, 1페이지씩 이동
 
 
 // YEAR INDEX CLICK
@@ -117,12 +118,20 @@ historyPage.forEach( (el, i) => {
 
 // 미디어쿼리처럼 사용가능
 let autoPlayState = false; //오토플레이 상태: false = 꺼짐
+let isAppend = false
+
+function appendSlide_Init(){
+  if(window.innerWidth <= 1024 && isAppend === false){
+    isAppend = true
+    appendSlide()
+  }
+}
+appendSlide_Init()
 
 function matchWidth() {
   if(window.matchMedia('(max-width: 1024px)').matches && autoPlayState === false){
     console.log("1024px 이하 match")
-    appendSlide()
-
+    
     slideConWrap.style = `transform: translateX(-${ (conWidth + 30) }px);`
     historyPage[0].classList.add('on')
     autoPlayInit = setInterval(tabletSizeSlideShow, 2000, 1)
@@ -154,4 +163,5 @@ window.addEventListener('resize', () => {
     historySlide.classList.remove('on') 
     matchWidth()
   }
+  appendSlide_Init()
 })
