@@ -332,9 +332,9 @@ html, body{scroll-behavior: smooth;}
   #auntie-history .history-slide-btn{display: none;}
   .history-slide .history-slide-container{margin: 0;}
   .history-slide-container .slide-contents-wrap{left: auto;}
-  .slide-contents-wrap .slide-contents{max-width: 400px; min-width: 320px;}
+  .slide-contents-wrap .slide-contents{min-width: 320px;}
   .slide-contents .history-descr{font-size: 14px;}
-  #auntie-history .history-pagination-wrap{display: flex; justify-content: center; margin: 40px auto 0;}
+  #auntie-history .history-pagination-wrap{display: flex; justify-content: center; min-width: 306px; margin: 40px auto 0;}
 
   .history-pagination-wrap .history-page-list{display: flex; justify-content: space-between; width: 100%; max-width: 520px; min-width: 320px;}
   .history-page-list .history-page{cursor: pointer; font-family: var(--font-garamond); color: transparent; font-size: 20px; font-weight: bold; transition: all .5s;}
@@ -346,9 +346,10 @@ html, body{scroll-behavior: smooth;}
   .history-page-list .history-page.on .page-circle{background-color: var(--core-gold);}
 }
 
-@keyframes fillPagination {
-  0%{background-color: var(--core-gold);}
-  100%{
-    background-color: #555;
-  }
+@media (max-width: 768px){
+  #auntie-history{padding: 160px 16px 100px;}
+  .history-title-wrap .history-title{font-size: 50px;}
+  .history-slide .history-txt{top: -50px; word-break: keep-all;}
+  .history-page-list .history-page{font-size: 16px;}
+  .history-page .page-circle{width: 8px; height: 8px;}
 }
