@@ -5,29 +5,29 @@ const historySlide = document.querySelector('.history-slide')
 const slideConWrap = document.querySelector('.slide-contents-wrap')
 const historyPage = document.querySelectorAll('.history-page')
 
-
-let historySlide_Idx = 0
-
+let slideIdx = 0
 
 
 function historySlideToPrev(){
   x = slideConWrap.children[0].clientWidth
-  if(historySlide_Idx === 0){
+  if(slideIdx === 0){
     historySlide.classList.remove('on')
-  }else if(historySlide_Idx !== 0 && historySlide_Idx > 0){
-    historySlide_Idx--
-    slideConWrap.style.left = -(x + 30) * historySlide_Idx + 'px'
+  }else if(slideIdx !== 0 && slideIdx > 0){
+    slideIdx--
+    slideConWrap.style = `transform: translateX(-${ (x + 30) * slideIdx}px);` 
   }
 }
+
+
 function historySlideToNext(){
   x = slideConWrap.children[0].clientWidth
   const contentsNum = slideConWrap.children.length
 
   if(!historySlide.classList.contains('on')){
     historySlide.classList.add('on')
-  }else if(historySlide.classList.contains('on') && historySlide_Idx < contentsNum - 2){
-    historySlide_Idx++    
-    slideConWrap.style.left = -(x + 30) * historySlide_Idx + 'px'
+  }else if(historySlide.classList.contains('on') && slideIdx < contentsNum - 2){
+    slideIdx++    
+    slideConWrap.style = `transform: translateX(-${ (x + 30) * slideIdx}px);`
   }
 }
 
@@ -35,93 +35,116 @@ hsBtnPrev.addEventListener('click', historySlideToPrev)
 hsBtnNext.addEventListener('click', historySlideToNext)
 
 
+
+
+
+
 //태블릿 사이즈 이하 슬라이드
+
+//변수들
+let slideLength = slideConWrap.children.length
+let currIdx = 0
 let autoPlayInit
-let slideIdx = 0
+let autoPlayState = false; //오토플레이 상태: false = 꺼짐
+let isAppend = false
+
+const slideClone_1st = slideConWrap.firstElementChild.cloneNode(true)
+const slideClone_2nd = slideConWrap.children[1].cloneNode(true)
+const slideClone_3rd = slideConWrap.children[2].cloneNode(true)
 
 function appendSlide(){
-  const slideClone_1st = slideConWrap.firstElementChild.cloneNode(true)
-  const slideClone_2nd = slideConWrap.children[1].cloneNode(true)
-  const slideClone_3rd = slideConWrap.children[2].cloneNode(true)
-
   slideConWrap.append(slideClone_1st, slideClone_2nd, slideClone_3rd)
+  isAppend = true 
 }
 
-function change_HistoryPageClass(slideIdx, slideLength){
-  for(let i = 0; i < slideLength; i++){
-    if(historyPage[i] === historyPage[slideIdx]){
-      historyPage[slideIdx].classList.add('on')
-    }else if(slideIdx === 0 || slideIdx === slideLength || slideIdx === slideLength + 1){
-      historyPage[0].classList.add('on')
-      historyPage[slideLength - 1 ].classList.remove('on')
-    }else{
-      historyPage[i].classList.remove('on') 
-    }        
+function removeSlide(){
+  slideClone_1st.parentNode.removeChild(slideClone_1st);
+  slideClone_2nd.parentNode.removeChild(slideClone_2nd);
+  slideClone_3rd.parentNode.removeChild(slideClone_3rd);
+  
+  isAppend = false;
+}
+
+
+// YEAR INDEX STYLE CHANGE
+function change_HistoryPageClass(){ 
+  if(currIdx >= slideLength){
+
+    historyPage[0].classList.add('on')
+    historyPage[slideLength - 1].classList.remove('on')
+  }else{
+    for(let i = 0; i < slideLength; i++){
+      historyPage[i].classList.remove('on');
+    }
+    historyPage[currIdx].classList.add('on');
   }
 }
 
-function autoPlay_Tab_HistorySlide(x, slideLength){
 
-  autoPlayInit =  setInterval(() => {
-    slideIdx++    
-    slideConWrap.style = `transform: translateX(-${ (x + 30) * slideIdx}px); transition: all .7s`
+// TABLET SIZE SLIDE SHOW
 
-    console.log(slideIdx)
-    change_HistoryPageClass(slideIdx, slideLength)
+function tabletSizeSlideShow() {
+  currIdx ++
+  slideConWrap.style = `transform: translateX(-${ 350 * currIdx }px); transition: all .7s;`
 
-    if(slideIdx === slideLength + 1){    
-      slideIdx = 0
-      slideConWrap.style = `transform: translateX(0); transition: auto;` 
+    if(currIdx > slideLength){
+      currIdx = 0;
+      slideConWrap.style = `transform: translateX(0); transition: 0s;` 
     }
-}, 3000);
-} 
+  change_HistoryPageClass(); 
+}
 
-function clickPagination_toPageHistory(x, slideLength) {
-  historyPage.forEach( (el, i) => {
-    el.addEventListener('click', () => { 
-      
-      slideIdx = i
-      slideConWrap.style = `transform: translateX(-${ (x + 30) * slideIdx}px); transition: all .7s` 
 
-      change_HistoryPageClass(slideIdx, slideLength)
-      clearInterval(autoPlayInit)
+// YEAR INDEX CLICK
+historyPage.forEach( (el, i) => { 
 
-      setTimeout(() => {
-        autoPlay_Tab_HistorySlide(x, slideLength)
+  el.addEventListener('click', () => { 
+    currIdx = i
+    clearInterval(autoPlayInit)
+    change_HistoryPageClass();
 
-        console.log(slideIdx)
-
-      }, 500)
-    })
+    slideConWrap.style = `transform: translateX(-${ 350 * currIdx }px); transition: all .7s;`
+    
+    setTimeout(() => {
+      autoPlayInit = setInterval(tabletSizeSlideShow, 2000)
+    }, 600)
   })
+});
+
+function matchWidth() {
+  if(window.matchMedia('(max-width: 1024px)').matches && autoPlayState === false){
+    slideConWrap.style = `transform: translateX(0);`
+    historyPage[0].classList.add('on')
+    autoPlayInit = setInterval(tabletSizeSlideShow, 2000)
+    autoPlayState = true
+    appendSlide(); 
+
+  }else{
+    currIdx = 0
+    historyPage[0].classList.remove('on')
+    autoPlayState = false
+  }
 }
 
-function init_Tab_HistorySlide(){
-  const x = slideConWrap.children[0].clientWidth 
-  const slideLength = historyPage.length
-  historyPage[0].classList.add('on')
-
-  appendSlide()
-  autoPlay_Tab_HistorySlide(x, slideLength) 
-  clickPagination_toPageHistory(x, slideLength)
-}
+matchWidth()
 
 
 window.addEventListener('resize', () => {
-  if(window.innerWidth > 1024){
-    slideIdx = 0
+  if(window.innerWidth > 1024 && isAppend === true){
+    currIdx = 0
+    slideConWrap.style = `transform: translateX(0);`
     clearInterval(autoPlayInit)
-  }else{
-    init_Tab_HistorySlide()
-    window.removeEventListener('resize', init_Tab_HistorySlide)
+    autoPlayState = false
+    historyPage.forEach(el => el.classList.remove('on')
+    )
+    removeSlide()
+  }
+
+  if (window.innerWidth <= 1024 && autoPlayState === false) {
+    currIdx = 0
+
+    historySlide.classList.remove('on') 
+    matchWidth()
   }
 })
-document.addEventListener("DOMContentLoaded", () => {
-  if(window.innerWidth > 1024){
-    slideIdx = 0 
-    clearInterval(autoPlayInit)
-  }else{
-    init_Tab_HistorySlide()
-  }
-});
 

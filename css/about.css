@@ -1,8 +1,8 @@
 @charset "UTF-8";
-html, body{scroll-behavior: smooth;}
+
 
 .skip-menu a{
-  position: fixed; z-index: 999; left: 0; top: -9999px; 
+  position: fixed; z-index: 9999; left: 0; top: -9999px; 
   width: 100%; text-align: center; padding: 8px; background-color: var(--core-gold); color: var(--text-white); }
 .skip-menu a:focus {top: 0;}
 

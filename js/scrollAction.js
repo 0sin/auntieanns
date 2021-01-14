@@ -5,17 +5,14 @@ function scrollActions(){
   const story = document.querySelector('#auntie-story')
   const identity = document.querySelector('#identity')
   const philosophy = document.querySelector('#auntie-philosophy') 
-  const history = document.querySelector('#auntie-history') 
 
-  // console.log(y)
   moveDown_BG_Pretzel(y, isMobile)
-  showTopBtn(y)
+  // showTopBtn(y)
   fadeIn_Story(y, story)
   fadeUp_CiImg(y, isMobile, identity)
   fadeUp_ColorWrap(y, identity)
   fadeIn_philoTitle(y, philosophy)
   movePhiloCircle(y, isMobile, philosophy)
-  // active_Tab_historySlide(y, philosophy, history)
 }
 
 function moveDown_BG_Pretzel(y, isMobile){
@@ -35,14 +32,14 @@ function moveDown_BG_Pretzel(y, isMobile){
   } 
 }
 
-function showTopBtn(y){
-  const topBtn = document.querySelector('.shortcut-top-btn')
-  if(y < 508){
-    topBtn.classList.remove('show') 
-  }else if(y > 507){
-    topBtn.classList.add('show')
-  }
-}
+// function showTopBtn(y){
+//   const topBtn = document.querySelector('.shortcut-top-btn')
+//   if(y < 508){
+//     topBtn.classList.remove('show') 
+//   }else if(y > 507){
+//     topBtn.classList.add('show')
+//   }
+// }
 
 function fadeIn_Story(y, story){ 
   const bgPretzel = document.querySelector('.bg-pretzel')
@@ -128,17 +125,5 @@ function movePhiloCircle(y, isMobile, philosophy){
     }, 1500); 
   }
 }
-
-// function active_Tab_historySlide(y, philosophy, history){
-//   const p_height = philosophy.clientHeight
-//   const trigger = history.offsetTop
-
-//   if(y > trigger - p_height && window.innerWidth < 1025){
-//     history.classList.add('Tab')
-//     window.removeEventListener('scroll', active_Tab_historySlide)
-//   }else{
-//     history.classList.remove('Tab') 
-//   }
-// }
 
 window.addEventListener('scroll', scrollActions)

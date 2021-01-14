@@ -105,3 +105,44 @@ hamburgerWrap.addEventListener('click', toggleHamburger)
 window.addEventListener('resize', activeMobileAcc) 
 activeMobileAcc()
 closeWholeMenu()
+
+// FOOTER GO TO TOP BTN------------------------------------ 
+// 변수 선언
+const topBtn = document.querySelector('.top_btn');
+let docElem = document.documentElement; 
+
+// 브라우저마다 높이를 구하는 방식이 다름. 둘중에 값이 높은것 취하기.
+let docElemHeight = Math.max(docElem.offsetHeight, docElem.offsetHeight)
+
+let offset;
+let scrollPos;
+
+if (docElemHeight !== 0) {
+  offset = docElemHeight / 4;
+}
+
+
+// 윈도우 스크롤 이벤트
+window.addEventListener('scroll', function() {
+  scrollPos = docElem.scrollTop; //꼭 함수 안에 들어와있어야 인식할 수 있음
+  topBtn.className = (scrollPos > offset) ? 'top_btn visible' : 'top_btn';
+});
+
+
+// 클릭시 위로 이동
+topBtn.addEventListener('click', function(e){
+  e.preventDefault(); // a태그 이벤트 초기화
+  // docElem.scrollTop = 0; //한번에 이동
+  scrollToTop(); 
+});
+
+// 클릭시 점차 이동
+function scrollToTop() {
+  let scrollInterval = setInterval(function() {
+    if (scrollPos != 0) {
+      window.scrollBy(0, -120);
+    } else {
+      clearInterval(scrollInterval);
+    }
+  },15)
+}
