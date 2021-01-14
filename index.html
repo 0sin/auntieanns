@@ -4,16 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>앤티앤스 프레즐</title>
+
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/common.css" type="text/css">
   <link rel="stylesheet" href="css/index.css" type="text/css">
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.ico">
+
+  <!-- <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.ico"> -->
 </head>
 
+
 <body>
+
   <header class="none-bg">
     <div class="header-inner">
       <h1 class="main-logo"><a href="index.html"><img src="img/logo.png" alt="앤티앤스 프레즐"></a></h1>
@@ -81,9 +86,11 @@
           <p class="whole-menu-title">
             <a href="#">Auntie Anne's<span class="title-hover-line"></span></a>
           </p>
-          <li class="whole-menu-item"><a href="#">앤티앤스 스토리</a></li>
-          <li class="whole-menu-item"><a href="#">아이덴티티</a></li>
-          <li class="whole-menu-item"><a href="#">히스토리</a></li> 
+            <div class="whole-menu-item-wrap">
+              <li class="whole-menu-item"><a href="about.html#auntie-story">앤티앤스 스토리</a></li>
+              <li class="whole-menu-item"><a href="about.html#identity">아이덴티티</a></li>
+              <li class="whole-menu-item"><a href="about.html#auntie-history">히스토리</a></li> 
+            </div>
         </ul>
       </div>
       <div class="whole-menu-box">
@@ -91,8 +98,8 @@
           <p class="whole-menu-title">
             <a href="#">Menu<span class="title-hover-line"></span></a>
           </p>
-          <div class="auntieannes-menu">
-            <div class="pretzle-menu">
+          <div class="whole-menu-item-wrap auntieannes-menu">
+            <div class="pretzel-menu">
               <li class="whole-menu-item"><a href="#">NEW</a></li>
               <li class="whole-menu-item"><a href="#">ALL</a></li>
               <li class="whole-menu-item"><a href="#">클래식 프레즐</a></li>
@@ -112,9 +119,11 @@
           <p class="whole-menu-title">
             <a href="#">Event<span class="title-hover-line"></span></a>
           </p>
-          <li class="whole-menu-item"><a href="#">진행중인 이벤트</a></li>
-          <li class="whole-menu-item"><a href="#">종료된 이벤트</a></li>
-          <li class="whole-menu-item"><a href="#">당첨자 발표</a></li>
+          <div class="whole-menu-item-wrap">
+            <li class="whole-menu-item"><a href="#">진행중인 이벤트</a></li>
+            <li class="whole-menu-item"><a href="#">종료된 이벤트</a></li>
+            <li class="whole-menu-item"><a href="#">당첨자 발표</a></li>
+          </div>
         </ul>
       </div>
       <div class="whole-menu-box">
@@ -122,8 +131,10 @@
           <p class="whole-menu-title">
             <a href="#">Community<span class="title-hover-line"></span></a>
           </p>
-          <li class="whole-menu-item"><a href="#">공지사항</a></li>
-          <li class="whole-menu-item"><a href="#">고객소통방</a></li>
+          <div class="whole-menu-item-wrap">
+            <li class="whole-menu-item"><a href="#">공지사항</a></li>
+            <li class="whole-menu-item"><a href="#">고객소통방</a></li>
+          </div>
         </ul>
       </div>
       <div class="whole-menu-box">
@@ -132,10 +143,12 @@
             <a href="#">Franchise<span class="title-hover-line"></span></a>
             
           </p>
-          <li class="whole-menu-item"><a href="#">개설 조건 및 절차</a></li>
-          <li class="whole-menu-item"><a href="#">개설 비용 및 안내</a></li>
-          <li class="whole-menu-item"><a href="#">가맹 관련 FAQ</a></li>
-          <li class="whole-menu-item"><a href="#">가맹 상담 신청</a></li>
+          <div class="whole-menu-item-wrap">
+            <li class="whole-menu-item"><a href="#">개설 조건 및 절차</a></li>
+            <li class="whole-menu-item"><a href="#">개설 비용 및 안내</a></li>
+            <li class="whole-menu-item"><a href="#">가맹 관련 FAQ</a></li>
+            <li class="whole-menu-item"><a href="#">가맹 상담 신청</a></li>
+          </div>
         </ul>
       </div>
       <div class="whole-menu-box">
@@ -143,8 +156,10 @@
           <p class="whole-menu-title">
             <a href="#">Finding Store<span class="title-hover-line"></span></a>
           </p>
-          <li class="whole-menu-item"><a href="#">매장찾기</a></li>
-          <li class="whole-menu-item"><a href="#">딜리버리 서비스</a></li>
+          <div class="whole-menu-item-wrap">
+            <li class="whole-menu-item"><a href="#">매장찾기</a></li>
+            <li class="whole-menu-item"><a href="#">딜리버리 서비스</a></li>
+          </div>
         </ul>
       </div>
     </div>
@@ -167,18 +182,13 @@
               Fax. 02. 587. 0956</p>
         </div>
         <ul class="sns-icon-wrap">
-          <li><a href="#"><img src="img/icon_sns_facebook.png" alt="앤티앤스 페이스북"></a></li>
-          <li><a href="#"><img src="img/icon_sns_instagram.png" alt="앤티앤스 인스타그램"></a></li>
-          <li><a href="#"><img src="img/icon_sns_naverBlog.png" alt="앤티앤스 네이버 블로그"></a></li>
+          <li class="sns-icon"><a href="#"><img src="img/icon_sns_facebook.png" alt="앤티앤스 페이스북"></a></li>
+          <li class="sns-icon"><a href="#"><img src="img/icon_sns_instagram.png" alt="앤티앤스 인스타그램"></a></li>
+          <li class="sns-icon"><a href="#"><img src="img/icon_sns_naverBlog.png" alt="앤티앤스 네이버 블로그"></a></li>
         </ul>
       </div>
     </div>
-  </div> <!-- whole-menu-container end --> 
-  <a href="#about-wrap" class="shortcut-top-btn">
-    <div class="chevron-up"></div>
-    TOP
-  </a>
-  
+  </div>
 
 
   <main>
