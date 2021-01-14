@@ -184,15 +184,6 @@ header.none-bg .gnb-wrap{color: var(--text-white);}
 
 /*z-index값 : header 999, hamburger 9999(항상 최상위) whole-menu 9998(햄버거 토글로 열리는 전체메뉴)*/
 
-.shortcut-top-btn{z-index: 999; position: fixed; right: 50px; bottom: 50px; visibility: hidden; display: block; opacity: 0; width: 80px; height: 80px; transform: scale(0.9); border-radius: 50%; text-align: center; font-size: 16px; font-weight: bold; font-family: var(--font-barlow); letter-spacing: 1px; background-color: #fff; color: var(--core-gold); box-shadow: 3px 3px 18px 15px rgba(0,0,0,0.05); transition: all .3s;}
-.shortcut-top-btn .chevron-up{width: 14px; height: 14px; 
-  border-top: 2px solid var(--core-gold);
-  border-left: 2px solid var(--core-gold);
-  transform: rotate(45deg);
-  margin: 24px auto 1px;
-}
-.shortcut-top-btn.show{visibility: visible; opacity: 1; transform: scale(1);}
-
 /* FOOTER */
 
 footer {width: 100%;}
