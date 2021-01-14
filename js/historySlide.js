@@ -45,7 +45,7 @@ hsBtnNext.addEventListener('click', historySlideToNext)
 let slideLength = slideConWrap.children.length
 let currIdx = 0
 let autoPlayInit
-let autoPlayState = false; //오토플레이 상태: false = 꺼짐
+let autoPlayState = false;
 let isAppend = false
 
 const slideClone_1st = slideConWrap.firstElementChild.cloneNode(true)

@@ -111,14 +111,13 @@ closeWholeMenu()
 const topBtn = document.querySelector('.top_btn');
 let docElem = document.documentElement; 
 
-// 브라우저마다 높이를 구하는 방식이 다름. 둘중에 값이 높은것 취하기.
 let docElemHeight = Math.max(docElem.offsetHeight, docElem.offsetHeight)
 
 let offset;
 let scrollPos;
 
 if (docElemHeight !== 0) {
-  offset = docElemHeight / 4;
+  offset = 700;
 }
 
 
@@ -131,8 +130,7 @@ window.addEventListener('scroll', function() {
 
 // 클릭시 위로 이동
 topBtn.addEventListener('click', function(e){
-  e.preventDefault(); // a태그 이벤트 초기화
-  // docElem.scrollTop = 0; //한번에 이동
+  e.preventDefault();
   scrollToTop(); 
 });
 

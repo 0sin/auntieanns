@@ -7,7 +7,6 @@ function scrollActions(){
   const philosophy = document.querySelector('#auntie-philosophy') 
 
   moveDown_BG_Pretzel(y, isMobile)
-  // showTopBtn(y)
   fadeIn_Story(y, story)
   fadeUp_CiImg(y, isMobile, identity)
   fadeUp_ColorWrap(y, identity)
@@ -31,15 +30,6 @@ function moveDown_BG_Pretzel(y, isMobile){
     }
   } 
 }
-
-// function showTopBtn(y){
-//   const topBtn = document.querySelector('.shortcut-top-btn')
-//   if(y < 508){
-//     topBtn.classList.remove('show') 
-//   }else if(y > 507){
-//     topBtn.classList.add('show')
-//   }
-// }
 
 function fadeIn_Story(y, story){ 
   const bgPretzel = document.querySelector('.bg-pretzel')
