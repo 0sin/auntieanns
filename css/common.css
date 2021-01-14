@@ -29,11 +29,16 @@ body {
   --text-gray: #777777;
   --font-notoSans: 'Noto Sans KR', serif;
   --font-garamond: 'Cormorant Garamond', sans-serif;
+<<<<<<< HEAD
   --font-barlow: 'Barlow', sans-serif;
+=======
+  --font-barlow: 'Barlow Semi Condensed', serif;
+>>>>>>> 11bd4f317578ee62e148669531d9030b6d2cdb79
 }
 
 
 ::selection{ background: var(--core-gold); color:var(--text-white);}
+<<<<<<< HEAD
 
 
 /* HEADER */
@@ -376,3 +381,6 @@ footer {width: 100%;}
   25% {opacity: 0;}
   100% {opacity: 0;}
 }
+=======
+/* 드래그시 셀렉트부분 하이라이트 배경색, 글자색 변경하는 가상선택자 */
+>>>>>>> 11bd4f317578ee62e148669531d9030b6d2cdb79
