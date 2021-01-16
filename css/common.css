@@ -181,6 +181,7 @@ header.none-bg .gnb-wrap{color: var(--text-white);}
 
   .hamburger-wrap{width: 54px; height: 54px;}
   .hamburger-wrap .ham-line-wrap{width: 17px; height: 16px; margin: 18px 0 0 18px;}
+  .mobile-menu-box>a{font-size: 2.8vw;}
 }
 
 /*z-index값 : header 999, hamburger 9999(항상 최상위) whole-menu 9998(햄버거 토글로 열리는 전체메뉴)*/
